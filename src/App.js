@@ -2,18 +2,29 @@ import { Component } from "react";
 import "./App.css";
 import BeersContainer from "./Containers/BeersContainer";
 import BeerForm from "./Components/BeerForm";
+import Search from './Components/Search'
+
 class App extends Component {
   state = {
     beers: [],
     userBeers: [],
     currentUserId: 1,
+    searchValue: 3.0
   };
 
   async componentDidMount() {
     let response = await fetch("http://localhost:3000/api/v1/beers");
     let beerData = await response.json();
     this.setState({ beers: beerData });
-    console.log(this.state.beers);
+  }
+
+
+  filteredBeers = () => {
+    console.log("beers filtered:",this.state.beers.filter(beer => beer.abv >= this.state.searchValue))
+    console.log("Beers", this.state.beers)
+    return this.state.beers.filter(beer => beer.abv >= this.state.searchValue)
+    
+    
   }
 
   async fetchUserList() {
@@ -78,17 +89,29 @@ class App extends Component {
       });
   };
 
+  searchHandler = event => {
+    this.setState({[event.target.name]: event.target.value})
+  }
+
+
+
   render() {
+   
     return (
+      
       <div>
-        <BeerForm addNewBeer={this.addNewBeer} />
-        <h1>User Beers</h1>
-        <BeersContainer beers={this.state.userBeers} />
+        {console.log(this.state.beers)}
+        <Search searchValue={this.state.searchValue} searchHandler={this.searchHandler} searchOption={this.state.searchOption}/>
+        
         <h1>Beers</h1>
         <BeersContainer
-          beers={this.state.beers}
+          beers={this.filteredBeers()}
+          beersFull={this.state.beers}
           addBeer={this.persistUserBeer}
         />
+        <h1>User Beers</h1>
+        <BeersContainer beers={this.state.userBeers} beersFull={null} addBeer={null}/>
+        <BeerForm addNewBeer={this.addNewBeer} />
       </div>
     );
   }

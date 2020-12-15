@@ -47,35 +47,35 @@ class BeerForm extends Component {
             value={this.state.name}
             name="name"
             onChange={this.handleChanges}
-          />
+          /><br/><br/>
           <label>Description</label>
           <input
             type="text"
             value={this.state.description}
             name="description"
             onChange={this.handleChanges}
-          />
+          /><br/><br/>
           <label>Tag Line</label>
           <input
             type="text"
             value={this.state.tag_line}
             name="tag_line"
             onChange={this.handleChanges}
-          />
+          /><br/><br/>
           <label>Image URL</label>
           <input
             type="text"
             value={this.state.image_url}
             name="image_url"
             onChange={this.handleChanges}
-          />
+          /><br/><br/>
           <label>Yeast</label>
           <input
             type="text"
             value={this.state.yeast}
             name="yeast"
             onChange={this.handleChanges}
-          />
+          /><br/><br/>
           <label>Alcohol By Volume</label>
           <input
             type="number"
@@ -85,28 +85,28 @@ class BeerForm extends Component {
             step=".1"
             onChange={this.handleChanges}
             value={this.state.abv}
-          ></input>
+          ></input><br/><br/>
           <label>Food Pairing 1</label>
           <input
             type="text"
             value={this.state.pair1}
             name="pair1"
             onChange={this.handleChanges}
-          />
+          /><br/><br/>
           <label>Food Pairing 2</label>
           <input
             type="text"
             value={this.state.pair2}
             name="pair2"
             onChange={this.handleChanges}
-          />
+          /><br/><br/>
           <label>Food Pairing 3</label>
           <input
             type="text"
             value={this.state.pair3}
             name="pair3"
             onChange={this.handleChanges}
-          />
+          /><br/><br/>
           <button >Submit</button>
         </form>
       </div>
