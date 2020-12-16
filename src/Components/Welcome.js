@@ -1,13 +1,10 @@
-import React, {Component} from 'react'
-
-class Welcome extends Component{
-    render(){
-        return(
-            <div>
-
-            </div>
-        )
-    }
-}
-
-export default Welcome;
+function Welcome(props) {
+    return (
+      <div >
+        <h2>Welcome!</h2>
+        <p>About the website</p>
+      </div>
+    );
+  }
+  
+  export default Welcome;

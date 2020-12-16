@@ -14,6 +14,7 @@ class FullBeerInfo extends Component {
     <button>{this.props.beer.dislikes}</button>
     <button>{this.props.beer.likes}</button>
       </div>
+
     );
   }
 }
