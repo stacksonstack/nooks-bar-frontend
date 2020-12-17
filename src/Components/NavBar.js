@@ -19,6 +19,9 @@ function NavBar(props) {
             <NavLink to="/beers">
             <li>Beers</li>
             </NavLink>
+            <NavLink to="/beers/new" >
+                <li>Add A Beer</li>
+            </NavLink>
         </ul>
       </div>
     );

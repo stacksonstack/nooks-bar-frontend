@@ -22,10 +22,12 @@ class App extends Component {
     let beerData = await response.json();
     this.setState({ beers: beerData });
 
-    let userResponse = await fetch(`http://localhost:3000/api/v1/users/${this.state.currentUserId}`);
+    let userResponse = await fetch(
+      `http://localhost:3000/api/v1/users/${this.state.currentUserId}`
+    );
     let userList = await userResponse.json();
     this.setState({ userBeers: userList.beers });
-    console.log(userList)
+    console.log(userList);
   }
 
   filteredBeers = () => {
@@ -95,15 +97,17 @@ class App extends Component {
   };
 
   removeBeer = (beer) => {
-    fetch(`http://localhost:3000/api/v1/users/${this.state.currentUserId}/user_beers/${beer.id}`, {
-      method: "DELETE",
-    })
+    fetch(
+      `http://localhost:3000/api/v1/users/${this.state.currentUserId}/user_beers/${beer.id}`,
+      {
+        method: "DELETE",
+      }
+    )
       .then((resp) => resp.json())
       .then((data) => {
         this.setState({ userBeers: data });
       });
-  }
-
+  };
 
   render() {
     return (
@@ -114,6 +118,7 @@ class App extends Component {
         <Switch>
           <Route path="/welcome" render={() => <Welcome />} />
           <Route
+            exact
             path="/beers"
             render={() => (
               <>
@@ -127,11 +132,18 @@ class App extends Component {
                   beers={this.filteredBeers()}
                   beersFull={this.state.beers}
                   addBeer={this.persistUserBeer}
-                  searchValue={this.state.searchValue}
-                  searchHandler={this.searchHandler}
-                  searchOption={this.state.searchOption}
                 />
               </>
+            )}
+          />
+          <Route
+            path="/beers/:id"
+            render={() => (
+              <BeersContainer
+                beers={this.filteredBeers()}
+                beersFull={this.state.beers}
+                addBeer={this.persistUserBeer}
+              />
             )}
           />
           <Route
@@ -147,12 +159,12 @@ class App extends Component {
             )}
           />
           <Route
-            path="/beers/new"
             exact
+            path="/beers/new"
             render={() => <BeerForm addNewBeer={this.addNewBeer} />}
           />
-          <Route path="/signup" exact render={() => <Signup />} />
-          <Route path="/login" exact render={() => <Login />} />
+          <Route path="/signup" render={() => <Signup />} />
+          <Route path="/login" render={() => <Login />} />
         </Switch>
       </div>
     );

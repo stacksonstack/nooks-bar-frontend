@@ -8,11 +8,6 @@ class BeersContainer extends Component {
         <BeerPreview key={beer.id} beer={beer} addBeer={this.props.addBeer} removeBeer={this.props.removeBeer}/>
       )) : <h2>Loading..</h2> 
   };
-  //   renderBeerFullInfo = () => {
-  //     return this.props.beersFull
-  //       ? this.props.beersFull.map((beer) => <FullBeerInfo beer={beer} />)
-  //       : null;
-  //   };
 
   render() {
     return (
@@ -22,29 +17,32 @@ class BeersContainer extends Component {
         ) : (
           <>
             <Switch>
+           
             <Route
                 path="/savedBeers"
-                exact render={() => {
-                  return this.renderBeerPreview();
-                }}
-              />
-              <Route
-                path="/beers"
-                exact render={() => {
+                 render={() => {
                   return this.renderBeerPreview();
                 }}
               />
               
               <Route
-                path="/beers/:id"
-                render={({ match }) => {
-                  let id = parseInt(match.params.id);
-                  let FoundBeer = this.props.beers.find(
-                    (beer) => beer.id === id
-                  );
-                  return <FullBeerInfo beer={FoundBeer} />;
+                exact path="/beers"
+                 render={() => {
+                  return this.renderBeerPreview();
                 }}
               />
+               <Route
+                 path="/beers/:id"
+                render={({ match }) => {
+                  let id = parseInt(match.params.id);
+                  let foundBeer = this.props.beers.find(
+                    (beer) => beer.id === id
+                  )
+                  return <FullBeerInfo beer={foundBeer} />;
+                }}
+              />
+              
+             
             </Switch>
           </>
         )}
