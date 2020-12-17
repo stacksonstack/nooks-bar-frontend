@@ -22,6 +22,12 @@ function NavBar(props) {
             <NavLink to="/beers/new" >
                 <li>Add A Beer</li>
             </NavLink>
+            <NavLink to="/user" >
+                <li>Update Information</li>
+            </NavLink>
+            <NavLink to="/myInfo" >
+                <li>My Information</li>
+            </NavLink>
         </ul>
       </div>
     );

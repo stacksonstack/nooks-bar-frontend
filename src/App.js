@@ -5,17 +5,23 @@ import BeerForm from "./Components/BeerForm";
 import Search from "./Components/Search";
 import Header from "./Components/Header";
 import NavBar from "./Components/NavBar";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, withRouter } from "react-router-dom";
 import Welcome from "./Components/Welcome";
 import Signup from "./Components/Signup";
 import Login from "./Components/Login";
+import UpdateUser from './Components/UpdateUser'
+import UserInfo from './Components/UserInfo'
+
 class App extends Component {
   state = {
     beers: [],
     userBeers: [],
     currentUserId: 1,
     searchValue: 3.0,
+    currentUser: []
   };
+
+  userId = this.state.currentUserId
 
   async componentDidMount() {
     let response = await fetch("http://localhost:3000/api/v1/beers");
@@ -25,9 +31,10 @@ class App extends Component {
     let userResponse = await fetch(
       `http://localhost:3000/api/v1/users/${this.state.currentUserId}`
     );
-    let userList = await userResponse.json();
-    this.setState({ userBeers: userList.beers });
-    console.log(userList);
+    let userData = await userResponse.json();
+    this.setState({ userBeers: userData.beers });
+    this.setState({ currentUser: userData});
+    
   }
 
   filteredBeers = () => {
@@ -71,7 +78,7 @@ class App extends Component {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Accepts: "application/json",
+        "Accepts": "application/json",
       },
       body: JSON.stringify({
         name,
@@ -88,7 +95,9 @@ class App extends Component {
       .then((resp) => resp.json())
       .then((data) => {
         console.log("Data:", data);
-        this.setState({ beers: [...this.state.beers, data] });
+        this.setState({ beers: [...this.state.beers, data] }, () =>
+          this.props.history.push("/beers")
+        );
       });
   };
 
@@ -109,14 +118,48 @@ class App extends Component {
       });
   };
 
+  updateUser=(userObj)=>{
+    const {
+      name,
+      email,
+      password,
+      age
+    } = userObj;
+    console.log("User Object",userObj)
+    
+    
+    fetch(`http://localhost:3000/api/v1/users/1`, {
+      method: "PATCH",
+      headers:{
+        "Content-Type": "application/json",
+        "Accepts": "application/json",
+      },
+      body: JSON.stringify({name, email, password, age})
+    })
+    .then(resp => resp.json())
+    .then(data => {console.log(data)
+      this.setState({currentUser: data}, () =>
+    this.props.history.push("/myInfo"))})
+
+  };
+
+ 
+
   render() {
     return (
       <div>
-        {console.log("User Beers", this.state.userBeers)}
+        {console.log("User Data", this.state.currentUser)}
         <Header />
         <NavBar />
         <Switch>
+          <Route
+            exact
+            path="/beers/new"
+            render={() => <BeerForm addNewBeer={this.addNewBeer} />}
+          />
           <Route path="/welcome" render={() => <Welcome />} />
+          <Route path="/user" render={() => <UpdateUser  update={this.updateUser} user={this.state.currentUser}/>} />
+          <Route path="/myInfo" render ={()=> <UserInfo user={this.state.currentUser}/>}/>
           <Route
             exact
             path="/beers"
@@ -158,11 +201,7 @@ class App extends Component {
               </>
             )}
           />
-          <Route
-            exact
-            path="/beers/new"
-            render={() => <BeerForm addNewBeer={this.addNewBeer} />}
-          />
+
           <Route path="/signup" render={() => <Signup />} />
           <Route path="/login" render={() => <Login />} />
         </Switch>
@@ -171,4 +210,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);
