@@ -9,8 +9,8 @@ import { Route, Switch, withRouter } from "react-router-dom";
 import Welcome from "./Components/Welcome";
 import Signup from "./Components/Signup";
 import Login from "./Components/Login";
-import UpdateUser from './Components/UpdateUser'
-import UserInfo from './Components/UserInfo'
+import UpdateUser from "./Components/UpdateUser";
+import UserInfo from "./Components/UserInfo";
 
 class App extends Component {
   state = {
@@ -18,10 +18,8 @@ class App extends Component {
     userBeers: [],
     currentUserId: 1,
     searchValue: 3.0,
-    currentUser: []
+    currentUser: [],
   };
-
-  userId = this.state.currentUserId
 
   async componentDidMount() {
     let response = await fetch("http://localhost:3000/api/v1/beers");
@@ -33,9 +31,49 @@ class App extends Component {
     );
     let userData = await userResponse.json();
     this.setState({ userBeers: userData.beers });
-    this.setState({ currentUser: userData});
-    
+    this.setState({ currentUser: userData });
   }
+
+  addLike = (beerObj) => {
+    fetch(`http://localhost:3000/api/v1/beers/${beerObj.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Accepts: "application/json",
+      },
+      body: JSON.stringify({
+        likes: beerObj.likes + 1,
+      }),
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        console.log("beer state:", this.state.beers);
+        let beerCopy = this.state.beers;
+        let index = beerCopy.findIndex((beer) => beer.id === beerObj.id);
+        beerCopy[index] = data;
+        this.setState({ beers: beerCopy });
+      });
+  };
+
+  addDislike = (beerObj) => {
+    fetch(`http://localhost:3000/api/v1/beers/${beerObj.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Accepts: "application/json",
+      },
+      body: JSON.stringify({
+        dislikes: beerObj.dislikes + 1,
+      }),
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        let beerCopy = this.state.beers;
+        let index = beerCopy.findIndex((beer) => beer.id === beerObj.id);
+        beerCopy[index] = data;
+        this.setState({ beers: beerCopy });
+      });
+  };
 
   filteredBeers = () => {
     return this.state.beers.filter(
@@ -78,7 +116,7 @@ class App extends Component {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Accepts": "application/json",
+        Accepts: "application/json",
       },
       body: JSON.stringify({
         name,
@@ -118,32 +156,26 @@ class App extends Component {
       });
   };
 
-  updateUser=(userObj)=>{
-    const {
-      name,
-      email,
-      password,
-      age
-    } = userObj;
-    console.log("User Object",userObj)
-    
-    
+  updateUser = (userObj) => {
+    const { name, email, password, age } = userObj;
+    console.log("User Object", userObj);
+
     fetch(`http://localhost:3000/api/v1/users/1`, {
       method: "PATCH",
-      headers:{
+      headers: {
         "Content-Type": "application/json",
-        "Accepts": "application/json",
+        Accepts: "application/json",
       },
-      body: JSON.stringify({name, email, password, age})
+      body: JSON.stringify({ name, email, password, age }),
     })
-    .then(resp => resp.json())
-    .then(data => {console.log(data)
-      this.setState({currentUser: data}, () =>
-    this.props.history.push("/myInfo"))})
-
+      .then((resp) => resp.json())
+      .then((data) => {
+        console.log(data);
+        this.setState({ currentUser: data }, () =>
+          this.props.history.push("/myInfo")
+        );
+      });
   };
-
- 
 
   render() {
     return (
@@ -158,8 +190,19 @@ class App extends Component {
             render={() => <BeerForm addNewBeer={this.addNewBeer} />}
           />
           <Route path="/welcome" render={() => <Welcome />} />
-          <Route path="/user" render={() => <UpdateUser  update={this.updateUser} user={this.state.currentUser}/>} />
-          <Route path="/myInfo" render ={()=> <UserInfo user={this.state.currentUser}/>}/>
+          <Route
+            path="/user"
+            render={() => (
+              <UpdateUser
+                update={this.updateUser}
+                user={this.state.currentUser}
+              />
+            )}
+          />
+          <Route
+            path="/myInfo"
+            render={() => <UserInfo user={this.state.currentUser} />}
+          />
           <Route
             exact
             path="/beers"
@@ -175,6 +218,8 @@ class App extends Component {
                   beers={this.filteredBeers()}
                   beersFull={this.state.beers}
                   addBeer={this.persistUserBeer}
+                  addLike={this.addLike}
+                  addDislike={this.addDislike}
                 />
               </>
             )}
@@ -186,6 +231,8 @@ class App extends Component {
                 beers={this.filteredBeers()}
                 beersFull={this.state.beers}
                 addBeer={this.persistUserBeer}
+                addLike={this.addLike}
+                addDislike={this.addDislike}
               />
             )}
           />
@@ -197,6 +244,8 @@ class App extends Component {
                 <BeersContainer
                   beers={this.state.userBeers}
                   removeBeer={this.removeBeer}
+                  addLike={this.addLike}
+                  addDislike={this.addDislike}
                 />
               </>
             )}

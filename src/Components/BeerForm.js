@@ -18,7 +18,6 @@ class BeerForm extends Component {
     this.setState({
       [event.target.name]: event.target.value,
     });
-    
   };
 
   localSubmitHandler=(event)=>{
