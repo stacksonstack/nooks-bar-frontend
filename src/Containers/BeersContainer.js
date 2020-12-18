@@ -5,7 +5,7 @@ import { Route, Switch } from "react-router-dom";
 class BeersContainer extends Component {
   renderBeerPreview = () => {
     return this.props.beers ?  this.props.beers.map((beer) => (
-        <BeerPreview key={beer.id} beer={beer} addBeer={this.props.addBeer} removeBeer={this.props.removeBeer}/>
+        <BeerPreview key={beer.id} beer={beer} addBeer={this.props.addBeer} removeBeer={this.props.removeBeer} addLike={this.props.addLike} addDislike={this.props.addDislike}/>
       )) : <h2>Loading..</h2> 
   };
 
@@ -38,7 +38,7 @@ class BeersContainer extends Component {
                   let foundBeer = this.props.beers.find(
                     (beer) => beer.id === id
                   )
-                  return <FullBeerInfo beer={foundBeer} />;
+                  return <FullBeerInfo beer={foundBeer} addLike={this.props.addLike} addDislike={this.props.addDislike}/>;
                 }}
               />
               
