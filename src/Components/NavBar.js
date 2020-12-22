@@ -3,11 +3,8 @@ import {NavLink} from 'react-router-dom'
 function NavBar(props) {
     return (
       <div >
-        <ul>
-            <li>Welcome Guest</li>
-            <NavLink to="/login">
-            <li>Login</li>
-            </NavLink>
+        <ul className="nav">
+            <li>Welcome {props.user.name}</li>
             <li>Card Game</li>
             <NavLink to="/savedBeers">
             <li>Saved Beers</li>
@@ -18,9 +15,6 @@ function NavBar(props) {
             </NavLink>
             <NavLink to="/beers/new" >
                 <li>Add A Beer</li>
-            </NavLink>
-            <NavLink to="/user" >
-                <li>Update Information</li>
             </NavLink>
             <NavLink to="/myInfo" >
                 <li>My Information</li>

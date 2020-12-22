@@ -183,14 +183,14 @@ class App extends Component {
       <div>
         {console.log("User Data", this.state.currentUser)}
         <Header />
-        <NavBar />
+        <NavBar user={this.state.currentUser} />
         <Switch>
           <Route
             exact
             path="/beers/new"
             render={() => <BeerForm addNewBeer={this.addNewBeer} />}
           />
-          <Route path="/welcome" render={() => <Welcome />} />
+          <Route path="/welcome" render={() => <Welcome  />} />
           <Route
             path="/user"
             render={() => (
@@ -252,7 +252,6 @@ class App extends Component {
             )}
           />
 
-          <Route path="/login" render={() => <Login />} />
           <Route path="/cardGame" render={()=> <CardGame />} />
         </Switch>
       </div>
