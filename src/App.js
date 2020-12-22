@@ -11,6 +11,7 @@ import Signup from "./Components/Signup";
 import Login from "./Components/Login";
 import UpdateUser from "./Components/UpdateUser";
 import UserInfo from "./Components/UserInfo";
+import CardGame from './Containers/CardGame'
 
 class App extends Component {
   state = {
@@ -253,6 +254,7 @@ class App extends Component {
 
           <Route path="/signup" render={() => <Signup />} />
           <Route path="/login" render={() => <Login />} />
+          <Route path="/cardGame" render={()=> <CardGame />} />
         </Switch>
       </div>
     );

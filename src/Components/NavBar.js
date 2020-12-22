@@ -28,6 +28,9 @@ function NavBar(props) {
             <NavLink to="/myInfo" >
                 <li>My Information</li>
             </NavLink>
+            <NavLink to="/cardGame" >
+                <li>Card Game</li>
+            </NavLink>
         </ul>
       </div>
     );
