@@ -22,11 +22,11 @@ export default function Board({ solved, disabled, dimension, cards, flipped, han
   );
 }
 
-Board.propTypes ={
-    disabled: PropTypes.bool.isRequired,
-    dimension: PropTypes.number.isRequired,
-    cards: PropTypes.arrayOf(PropTypes.shape({}).isRequired),
-    flipped: PropTypes.arrayOf(PropTypes.number.isRequired),
-    solved: PropTypes.arrayOf(PropTypes.number.isRequired),
-    handleClick: PropTypes.func.isRequired
-}
+// Board.propTypes ={
+//     disabled: PropTypes.bool.isRequired,
+//     dimension: PropTypes.number.isRequired,
+//     cards: PropTypes.arrayOf(PropTypes.shape({}).isRequired),
+//     flipped: PropTypes.arrayOf(PropTypes.number.isRequired),
+//     solved: PropTypes.arrayOf(PropTypes.number.isRequired),
+//     handleClick: PropTypes.func.isRequired
+// }

@@ -49,14 +49,14 @@ function CardGame() {
   const initializeDeck = () => {
     let id = 0;
     const cards = [
-      "tomNook",
+      "ketchup",
       "gloria",
       "celeste",
       "apollo",
       "stitches",
       "diana",
       "tiffany",
-      "isabelle",
+      "marina",
     ].reduce((acc, type) => {
       acc.push({
         id: id++,

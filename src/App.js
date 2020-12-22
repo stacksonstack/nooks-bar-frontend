@@ -252,7 +252,6 @@ class App extends Component {
             )}
           />
 
-          <Route path="/signup" render={() => <Signup />} />
           <Route path="/login" render={() => <Login />} />
           <Route path="/cardGame" render={()=> <CardGame />} />
         </Switch>

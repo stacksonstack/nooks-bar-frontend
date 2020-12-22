@@ -8,9 +8,6 @@ function NavBar(props) {
             <NavLink to="/login">
             <li>Login</li>
             </NavLink>
-            <NavLink to="/signup">
-            <li>Sign Up</li>
-            </NavLink>
             <li>Card Game</li>
             <NavLink to="/savedBeers">
             <li>Saved Beers</li>
