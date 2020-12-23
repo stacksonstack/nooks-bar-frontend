@@ -1,6 +1,6 @@
 import React from "react";
 import Card from "./Card";
-import PropTypes from 'prop-types'
+
 
 export default function Board({ solved, disabled, dimension, cards, flipped, handleClick }) {
   return (

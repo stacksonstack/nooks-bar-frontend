@@ -7,8 +7,6 @@ import Header from "./Components/Header";
 import NavBar from "./Components/NavBar";
 import { Route, Switch, withRouter } from "react-router-dom";
 import Welcome from "./Components/Welcome";
-import Signup from "./Components/Signup";
-import Login from "./Components/Login";
 import UpdateUser from "./Components/UpdateUser";
 import UserInfo from "./Components/UserInfo";
 import CardGame from './Containers/CardGame'
