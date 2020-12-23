@@ -23,31 +23,30 @@ img{
   height: 280px;
 }
 
+input{
+  text-align: center;
+}
+
 
 /* USER INFO  */
-#user-container{
+.container{
   display: flex;
   justify-content: center;
   
-  
 }
 
-#user-info{
+.bar{
   background-color: rgb(38, 33, 26);
   border-style: solid;
   border-color: rgb(38, 33, 26);
   border-width: 10px;
-
-  /* background-image: url("./fonts/brick.jpg"); */
-  width: 85%;
-  
-  
+  width: 100%;
 }
-#user2{
+.frame-container{
   display: flex;
   justify-content: center;
 }
-#user{
+.frame{
   border-style: solid;
   border-color:  black;
   border-width: 5px;

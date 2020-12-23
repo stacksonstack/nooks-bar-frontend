@@ -18,46 +18,56 @@ class UpdateUser extends Component {
   render() {
     return (
       <>
-        {console.log("user", this.props.user)}
-        {console.log("state:", this.state)}
         {this.state && this.props.user ? (
-          <div>
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                this.props.update(this.state);
-              }}
-            >
-              <label>Name</label>
-              <input
-                type="text"
-                value={this.state.name}
-                name="name"
-                onChange={this.handleChanges}
+          <div class="container">
+            <div class="bar">
+              <img alt="Bar Glass Rack" src={`/img/barTop2.png`} id="bar-top" />
+              <div class="frame-container">
+                <div class="frame">
+                  <form
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      this.props.update(this.state);
+                    }}
+                  >
+                    <label>Name</label><br/>
+                    <input
+                      type="text"
+                      value={this.state.name}
+                      name="name"
+                      onChange={this.handleChanges}
+                    /><br/><br/>
+                    <label>Email</label><br/>
+                    <input
+                      type="text"
+                      value={this.state.email}
+                      name="email"
+                      onChange={this.handleChanges}
+                    /><br/><br/>
+                    <label>Password</label><br/>
+                    <input
+                      type="password"
+                      value={this.state.password}
+                      name="name"
+                      onChange={this.handleChanges}
+                    /><br/><br/>
+                    <label>Re-enter Password</label><br/>
+                    <input
+                      type="password"
+                      value={this.state.password2}
+                      name="password2"
+                      onChange={this.handleChanges}
+                    /><br/><br/>
+                    <button>Update Info</button>
+                  </form>
+                </div>
+              </div>
+              <img
+                alt="Bar Table And Stool"
+                src={`/img/barStool2.png`}
+                id="bar-stool"
               />
-              <label>Email</label>
-              <input
-                type="text"
-                value={this.state.email}
-                name="email"
-                onChange={this.handleChanges}
-              />
-              <label>Password</label>
-              <input
-                type="password"
-                value={this.state.password}
-                name="name"
-                onChange={this.handleChanges}
-              />
-              <label>Re-enter Password</label>
-              <input
-                type="password"
-                value={this.state.password2}
-                name="password2"
-                onChange={this.handleChanges}
-              />
-              <button>Update Info</button>
-            </form>
+            </div>
           </div>
         ) : (
           <h2>Loading User Info...</h2>

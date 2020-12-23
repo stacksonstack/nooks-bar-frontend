@@ -4,11 +4,11 @@ import { NavLink } from "react-router-dom";
 class UserInfo extends Component {
   render() {
     return (
-      <div id="user-container">
-      <div id="user-info">
+      <div class="container">
+      <div class="bar">
         <img alt="Bar Glass Rack" src={`/img/barTop2.png`} id="bar-top"/>
-        <div id="user2">
-        <div id="user">
+        <div class="frame-container">
+        <div class="frame">
         <h2>{this.props.user.name}</h2>
         <p>Email:{this.props.user.email}</p>
         <p>Age:{this.props.user.age}</p>
