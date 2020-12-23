@@ -1,4 +1,23 @@
+@font-face {
+  font-family: barFont;
+  src: url("/src/fonts/Vintages.ttf");
+}
+html, body, #background{
+  background-color: 	#382913;
+}
+h1{
+  font-family: barFont;
+}
+#bar-sign{
+  width: 1000px;
+  height: 300px;
+  margin-bottom: -30px;
 
+}
+#bar-sign-container{
+  display: flex;
+  justify-content: center;
+}
 img{
   width: 100px;
   height: 280px;
@@ -47,15 +66,16 @@ img{
 /* Nav Bar  */
 
 .nav {
-  background-color: #d1d7e0;
+
   height: fit-content;
-  width: 90%;
+  width: 85%;
   margin: 0px auto;
   border-style: solid;
-  border-color: rgb(149, 217, 223);
-  border-width: 7px;
-  color: rgb(0, 109, 121);
-  background: white;
+  /* border-color: #c48d3f; */
+  border-color: rgb(33,31,29);
+  border-width: 10px;
+  color: rgb(33,31,29);
+  background: #fffffa;
   opacity: 0.8;
   text-align: center;
   font-weight: bold;
@@ -71,12 +91,12 @@ img{
   line-height: 40px;
   padding: 0px 15px;
   margin: 0 auto;
-  color: rgb(0, 109, 121);
+  color: rgb(33,31,29);
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
 }
 
 
 .nav li:hover {
-  color: rgb(255, 36, 0);
+  color: #c48d3f;
 }

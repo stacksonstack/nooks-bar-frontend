@@ -5,11 +5,9 @@ function NavBar(props) {
       <div >
         <ul className="nav">
             <li>Welcome {props.user.name}</li>
-            <li>Card Game</li>
             <NavLink to="/savedBeers">
             <li>Saved Beers</li>
             </NavLink>
-            <li>Log Out</li>
             <NavLink to="/beers">
             <li>Beers</li>
             </NavLink>
@@ -22,6 +20,7 @@ function NavBar(props) {
             <NavLink to="/cardGame" >
                 <li>Card Game</li>
             </NavLink>
+            <li>Log Out</li>
         </ul>
       </div>
     );

@@ -180,7 +180,7 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div id="background">
         {console.log("User Data", this.state.currentUser)}
         <Header />
         <NavBar user={this.state.currentUser} />
