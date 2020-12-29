@@ -13,7 +13,7 @@ class FullBeerInfo extends Component {
                   <h1 id="beer-title">{this.props.beer.name}</h1>
                   <div id="beer-container">
                     <div id="beer-tag">
-                      <p>{this.props.beer.tag_line}</p>
+                      <p>Tagline: {this.props.beer.tag_line}</p>
                     </div>
                     <div id="beer-img">
                       <img
@@ -22,13 +22,13 @@ class FullBeerInfo extends Component {
                       />
                     </div>
                     <div id="beer-desc">
-                      <p>{this.props.beer.description}</p>
+                      <p>Description: {this.props.beer.description}</p>
                     </div>
                     <div id="beer-abv">
                       <p>ABV: {this.props.beer.abv}</p>
                     </div>
                     <div id="beer-food">
-                      <p>{this.props.beer.food_pairings}</p>
+                      <p>Food Pairings: {this.props.beer.food_pairings.map((pairing) => (<li>{pairing}</li>))}</p>
                     </div>
                     <div id="beer-btns">
                       <button

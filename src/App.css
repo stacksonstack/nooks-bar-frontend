@@ -71,6 +71,7 @@ input {
 }
 #beer-img {
   grid-area: bimg;
+  padding-left: 20px;
 }
 #beer-desc {
   grid-area: bdesc;
@@ -80,6 +81,7 @@ input {
 #beer-abv {
   grid-area: babv;
   text-align: center;
+  padding-left: 20px;
 }
 #beer-food {
   grid-area: bfood;
@@ -91,6 +93,7 @@ input {
   grid-area: bbtns;
   display: flex;
   justify-content: space-evenly;
+  padding-top: 30px;
 }
 
 /* SAVED BEERS */
@@ -194,6 +197,7 @@ input {
 }
 #full-info-frame {
   width: 80%;
+  
 }
 
 #bar-top,
