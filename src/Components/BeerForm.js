@@ -10,7 +10,6 @@ class BeerForm extends Component {
     pair1: "",
     pair2: "",
     pair3: "",
-    yeast: "",
     abv: null,
   };
 
@@ -83,15 +82,6 @@ class BeerForm extends Component {
                 />
                 <br />
                 <br />
-                <label>Yeast</label><br />
-                <input
-                  type="text"
-                  value={this.state.yeast}
-                  name="yeast"
-                  onChange={this.handleChanges}
-                />
-                <br />
-                <br />
                 <label>Alcohol By Volume</label><br />
                 <input
                   type="number"
@@ -131,7 +121,7 @@ class BeerForm extends Component {
                 />
                 <br />
                 <br />
-                <button>Submit</button>
+                <button id="btn">Submit</button>
               </form>
             </div>
           </div>

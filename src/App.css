@@ -2,115 +2,213 @@
   font-family: barFont;
   src: url("/src/fonts/Vintages.ttf");
 }
-html, body, #background{
-  background-color: 	#382913;
+
+@font-face {
+  font-family: regularFont;
+  src: url("/src/fonts/RevxNeueDemo-Regular.ttf");
+}
+@font-face {
+  font-family: regularFont2;
+  src: url("/src/fonts/RevxNeueDemo-SemiBold.ttf");
+}
+html,
+body,
+#background {
+  background-color: #382913;
 }
 h1{
   font-family: barFont;
+  
 }
-#bar-sign{
+label, input, #btn, h4{
+  font-family: regularFont2;
+ 
+}
+
+p{
+  font-family: regularFont;
+  font-weight: bold;
+}
+
+
+
+
+#bar-sign {
   width: 1000px;
   height: 300px;
   margin-bottom: -30px;
-
 }
-#bar-sign-container{
+#bar-sign-container {
   display: flex;
   justify-content: center;
 }
-img{
+img {
   width: 100px;
   height: 280px;
 }
 
-input{
+input {
   text-align: center;
 }
 
+/* SAVED BEERS */
+#user-beers-container{
+  display: grid;
+  grid-template-areas:
+    "umtitle"
+    "umbeers";
+    background-color: white;
+    width: 85%;
+   text-align: center;
+   padding-top: 50px;
+}
+#user-menu-title{
+  grid-area: umtitle;
+}
 
-/* USER INFO  */
-.container{
+#user-menu-beers{
+  grid-area: umbeers;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+/* ALL BEERS */
+#all-beers, #user-beers{
   display: flex;
   justify-content: center;
+  width: 100%;
+}
+
+#beers-container {
+  display: grid;
+  grid-template-areas:
+    "search"
+    "mtitle"
+    "mbeers";
+    background-color: white;
+    width: 85%;
+   text-align: center;
+   padding-top: 50px;
   
 }
 
-.bar{
+#search-bar {
+  grid-area: search;
+  background-color: white;
+}
+
+#menu-title {
+  grid-area: mtitle;
+}
+
+#title{
+  font-size:80px;
+}
+
+#beer-title{
+  font-size:50px;
+}
+#menu-beers {
+  grid-area: mbeers;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* BEER PREVIEW  */
+#beer-preview{
+  padding-left: 50px;
+  padding-right: 50px;
+  width: 300px;
+  height: 500px;
+}
+
+
+/* BAR LOOK  */
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.bar {
   background-color: rgb(38, 33, 26);
   border-style: solid;
   border-color: rgb(38, 33, 26);
   border-width: 10px;
   width: 100%;
 }
-.frame-container{
+.frame-container {
   display: flex;
   justify-content: center;
 }
-.frame{
+.frame {
   border-style: solid;
-  border-color:  black;
+  border-color: black;
   border-width: 5px;
   width: 50%;
   text-align: center;
-  background-color: rgb(216, 212, 203); 
+  background-color: rgb(216, 212, 203);
   margin-bottom: 10px;
   padding: 10px;
 }
+#full-info-frame{
+  width: 80%;
+}
 
-#bar-top, #bar-stool{
+#bar-top,
+#bar-stool {
   width: 100%;
   height: 100px;
 }
 /* CARD GAME  */
-.board{
+.board {
   margin: 0px;
   padding: 0px;
 }
-.flip-container{
+.flip-container {
   perspective: 1000px;
   display: inline-block;
   border: 1px solid white;
   background: black;
 }
 
-.flip-container.flipped .flipper{
+.flip-container.flipped .flipper {
   transform: rotateY(180deg);
 }
 
-.flipper{
+.flipper {
   transition: 0.6s;
   transform-style: preserve-3d;
   position: relative;
 }
 
-.front, 
-.back{
+.front,
+.back {
   backface-visibility: hidden;
   position: absolute;
-  left:0;
+  left: 0;
   top: 0;
 }
 
-.back{
+.back {
   z-index: 2;
   transform: rotateY(0deg);
 }
 
-.front{
+.front {
   transform: rotateY(180deg);
 }
 
 /* Nav Bar  */
 
 .nav {
-
   height: fit-content;
   width: 85%;
   margin: 0px auto;
   border-style: solid;
-  border-color: rgb(33,31,29);
+  border-color: rgb(33, 31, 29);
   border-width: 10px;
-  color: rgb(33,31,29);
+  color: rgb(33, 31, 29);
   background: #fffffa;
   opacity: 0.8;
   text-align: center;
@@ -127,11 +225,10 @@ input{
   line-height: 40px;
   padding: 0px 15px;
   margin: 0 auto;
-  color: rgb(33,31,29);
+  color: rgb(33, 31, 29);
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
 }
-
 
 .nav li:hover {
   color: #c48d3f;

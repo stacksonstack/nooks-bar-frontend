@@ -6,14 +6,14 @@ class BeersContainer extends Component {
   renderBeerPreview = () => {
     return this.props.beers ?  this.props.beers.map((beer) => (
         <BeerPreview key={beer.id} beer={beer} addBeer={this.props.addBeer} removeBeer={this.props.removeBeer} addLike={this.props.addLike} addDislike={this.props.addDislike}/>
-      )) : <h2>Loading..</h2> 
+      )) : <h1>Loading..</h1> 
   };
 
   render() {
     return (
       <>
         {this.props.beers.length === 0 ? (
-          <h1>Loading...</h1>
+          this.props.removeBeer ? <h1>Add Beers To View</h1>: <h1>Loading...</h1>
         ) : (
           <>
             <Switch>
@@ -28,7 +28,8 @@ class BeersContainer extends Component {
               <Route
                 exact path="/beers"
                  render={() => {
-                  return this.renderBeerPreview();
+                  return this.renderBeerPreview()
+                  
                 }}
               />
                <Route

@@ -3,11 +3,11 @@ import { NavLink } from "react-router-dom";
 class BeerPreview extends Component {
   beerButton = () => {
     return this.props.addBeer ? (
-      <button onClick={() => this.props.addBeer(this.props.beer)}>
+      <button id="btn" onClick={() => this.props.addBeer(this.props.beer)}>
         Add To My List
       </button>
     ) : (
-      <button onClick={() => this.props.removeBeer(this.props.beer)}>
+      <button id="btn" onClick={() => this.props.removeBeer(this.props.beer)}>
         Remove
       </button>
     );
@@ -15,13 +15,13 @@ class BeerPreview extends Component {
 
   render() {
     return (
-      <div>
+      <div id="beer-preview">
         <NavLink to={`/beers/${this.props.beer.id}`}>
           <h4>{this.props.beer.name}</h4>
         </NavLink>
         <img src={this.props.beer.image_url} alt={this.props.beer.name} />
-        <p>{this.props.beer.likes}</p>
-        <p>{this.props.beer.dislikes}</p>
+        <p>{this.props.beer.likes} Likes</p>
+        <p>{this.props.beer.dislikes} Dislikes</p>
         <div>{this.beerButton()}</div>
       </div>
     );

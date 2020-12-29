@@ -9,7 +9,7 @@ import { Route, Switch, withRouter } from "react-router-dom";
 import Welcome from "./Components/Welcome";
 import UpdateUser from "./Components/UpdateUser";
 import UserInfo from "./Components/UserInfo";
-import CardGame from './Containers/CardGame'
+import CardGame from "./Containers/CardGame";
 
 class App extends Component {
   state = {
@@ -107,7 +107,6 @@ class App extends Component {
       description,
       image_url,
       food_pairing,
-      yeast,
       abv,
     } = beerObj;
 
@@ -123,7 +122,6 @@ class App extends Component {
         description,
         image_url,
         food_pairing,
-        yeast,
         abv,
         likes: 0,
         dislikes: 0,
@@ -188,7 +186,7 @@ class App extends Component {
             path="/beers/new"
             render={() => <BeerForm addNewBeer={this.addNewBeer} />}
           />
-          <Route path="/welcome" render={() => <Welcome  />} />
+          <Route path="/welcome" render={() => <Welcome />} />
           <Route
             path="/user"
             render={() => (
@@ -206,21 +204,30 @@ class App extends Component {
             exact
             path="/beers"
             render={() => (
-              <>
-                <h1>Beers</h1>
-                <Search
-                  searchValue={this.state.searchValue}
-                  searchHandler={this.searchHandler}
-                  searchOption={this.state.searchOption}
-                />
-                <BeersContainer
-                  beers={this.filteredBeers()}
-                  beersFull={this.state.beers}
-                  addBeer={this.persistUserBeer}
-                  addLike={this.addLike}
-                  addDislike={this.addDislike}
-                />
-              </>
+            <div id="all-beers">
+              <div id="beers-container">
+                <div id="search">
+                  <Search
+                    searchValue={this.state.searchValue}
+                    searchHandler={this.searchHandler}
+                    searchOption={this.state.searchOption}
+                  />
+                </div>
+                <div id="menu-title">
+                  <h1 id="title">Nook's Beer Menu</h1>
+                </div>
+                <div id="menu-beers">
+                  <BeersContainer
+                    beers={this.filteredBeers()}
+                    beersFull={this.state.beers}
+                    addBeer={this.persistUserBeer}
+                    addLike={this.addLike}
+                    addDislike={this.addDislike}
+                  />
+                </div>
+                </div>
+                </div>
+              
             )}
           />
           <Route
@@ -238,19 +245,25 @@ class App extends Component {
           <Route
             path="/savedBeers"
             render={() => (
-              <>
-                <h1>User Beers</h1>
+              <div id="user-beers">
+                <div id="user-beers-container">
+                <div id="user-menu-title">
+                <h1 id="title">User Beers</h1>
+                </div>
+                <div id="user-menu-beers">
                 <BeersContainer
                   beers={this.state.userBeers}
                   removeBeer={this.removeBeer}
                   addLike={this.addLike}
                   addDislike={this.addDislike}
                 />
-              </>
+                </div>
+                </div>
+              </div>
             )}
           />
 
-          <Route path="/cardGame" render={()=> <CardGame />} />
+          <Route path="/cardGame" render={() => <CardGame />} />
         </Switch>
       </div>
     );
