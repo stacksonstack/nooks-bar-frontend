@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Board from "../Components/Board";
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.js';
 
 function CardGame() {
   const [cards, setCards] = useState([]);
@@ -7,6 +9,7 @@ function CardGame() {
   const [dimension, setDimension] = useState(400);
   const [solved, setSolved] = useState([]);
   const [disabled, setDisabled] = useState(false);
+  const [counter, setCounter] = useState(70);
 
   useEffect(() => {
     resizeBoard();
@@ -18,8 +21,12 @@ function CardGame() {
   });
   useEffect(() => {
     preloadImages();
-  }, cards);
-  
+  }, [cards]);
+
+  useEffect(() => {
+    counter > 0 && setTimeout(() => setCounter(counter - 1), 1000);
+    gameOver();
+  }, [counter]);
 
   const resizeBoard = () => {
     setDimension(
@@ -105,17 +112,73 @@ function CardGame() {
     flipped.includes(id);
   };
 
+  const gameOver = () => {
+    if (counter === 0) {
+      <h1>Game Over</h1>;
+      console.log("GAME OVER");
+    } else if (solved.length >= 15) {
+      <h1>YOU WON</h1>;
+      console.log("YOU WON");
+      setCounter(0);
+    } else {
+      console.log("Keep going!");
+    }
+  };
+
   return (
     <div>
       <h2>Nook's Mix & Match Game</h2>
-      <Board
-        cards={cards}
-        flipped={flipped}
-        handleClick={handleClick}
-        dimension={dimension}
-        disabled={disabled}
-        solved={solved}
-      />
+
+      
+      {counter === 0 ? (
+        <>
+          
+          {/* <!-- Button trigger modal --> */}
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+See Results
+</button>
+
+{/* <!-- Modal --> */}
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">{solved.length >= 15
+                      ? "You Won!"
+                      : "Oops! Better Luck Next Time!"}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Wins: </p>
+        <p>Losses: </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Go Back To Bar</button>
+        <button type="button" class="btn btn-primary">Play Again</button>
+      </div>
+    </div>
+  </div>
+</div>
+        </>
+      ) : (
+        <>{
+        counter === 1 ? (
+          <h1>Time Left: {counter} second </h1>
+        ) : (
+          <h1>Time Left: {counter} seconds </h1>
+        )}
+        <Board
+          cards={cards}
+          flipped={flipped}
+          handleClick={handleClick}
+          dimension={dimension}
+          disabled={disabled}
+          solved={solved}
+        />
+        </>
+      )}
     </div>
   );
 }
