@@ -3,13 +3,21 @@ import Board from "../Components/Board";
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 
-function CardGame() {
+function CardGame(props) {
   const [cards, setCards] = useState([]);
   const [flipped, setFlipped] = useState([]);
   const [dimension, setDimension] = useState(400);
   const [solved, setSolved] = useState([]);
   const [disabled, setDisabled] = useState(false);
   const [counter, setCounter] = useState(70);
+  const [wins, setWins] = useState(0);
+  const [losses, setLosses] = useState(0);
+
+  useEffect(()=>{
+    fetch(`http://localhost:3000/api/v1/users/${props.user}`)
+    .then(resp => resp.json())
+    .then(data => console.log("user game",data.user_games))
+  },[])
 
   useEffect(() => {
     resizeBoard();
@@ -114,19 +122,26 @@ function CardGame() {
 
   const gameOver = () => {
     if (counter === 0) {
+      console.log("before losses", losses);
       <h1>Game Over</h1>;
+      
+      console.log("after losses", losses);
       console.log("GAME OVER");
     } else if (solved.length >= 15) {
+      console.log("before wins", wins);
       <h1>YOU WON</h1>;
       console.log("YOU WON");
       setCounter(0);
+      console.log("after wins", wins);
     } else {
       console.log("Keep going!");
     }
   };
 
   return (
+    
     <div>
+      {console.log("user", props.user)}
       <h2>Nook's Mix & Match Game</h2>
 
       

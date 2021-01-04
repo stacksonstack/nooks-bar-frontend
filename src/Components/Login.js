@@ -3,8 +3,9 @@ import React, { Component } from "react";
 class Login extends Component {
   render() {
     return (
-      <div>
+      <>
         <button
+          id="btn"
           type="button"
           class="btn btn-primary"
           data-toggle="modal"
@@ -71,7 +72,7 @@ class Login extends Component {
             </div>
           </div>
         </div>
-      </div>
+      </>
     );
   }
 }

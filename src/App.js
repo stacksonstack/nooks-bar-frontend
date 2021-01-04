@@ -263,7 +263,7 @@ class App extends Component {
             )}
           />
 
-          <Route path="/cardGame" render={() => <CardGame />} />
+          <Route path="/cardGame" render={() => <CardGame  user={this.state.currentUserId}/>} />
         </Switch>
       </div>
     );

@@ -41,7 +41,7 @@ p {
   justify-content: center;
 }
 img {
-  width: 100px;
+  width: 90px;
   height: 280px;
 }
 
@@ -277,4 +277,45 @@ input {
 
 .nav li:hover {
   color: #c48d3f;
+}
+
+/* Welcome Page  */
+#welcome-grid{
+  display: grid;
+  grid-template-areas: 
+  "welcome welcome"
+  "wimage wtext"
+  "wbtn wbtn" ;
+}
+#welcome-title{
+  grid-area: welcome;
+  padding-bottom: 10px;
+}
+#welcome-text{
+  grid-area: wtext;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: start;
+}
+#welcome-image{
+  grid-area: wimage;
+  
+}
+#timmy{
+  width: 200px;
+  height: 200px;
+  margin-left: 10%;
+  margin-bottom:20%;
+}
+#welcome-btn{
+  grid-area: wbtn;
+  
+  padding-bottom: 10px;
+  display: flex;
+  justify-content:space-evenly;
+}
+
+#welcome-frame{
+  width: 70%;
 }

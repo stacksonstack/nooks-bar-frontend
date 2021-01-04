@@ -7,6 +7,7 @@ class Signup extends Component{
                 
                 
                 <button
+                id="btn"
         type="button"
         class="btn btn-primary"
         data-toggle="modal"
