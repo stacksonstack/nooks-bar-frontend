@@ -33,11 +33,7 @@ h4{
 
 h4:hover{
 color: #c48d3f;
-/* text-decoration-color:  #c48d3f; */
 }
-
-
-
 
 #btn{
   background-color: #c48d3f;
@@ -69,6 +65,18 @@ img {
 
 input {
   text-align: center;
+}
+
+
+/* Footer */
+#footer{
+  background-color:rgb(38, 33, 26);
+  color:#c48d3f;
+  text-align: center;
+  width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2px;
 }
 
 /* BEER FULL INFO COMPONENT */

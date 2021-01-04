@@ -10,6 +10,7 @@ import Welcome from "./Components/Welcome";
 import UpdateUser from "./Components/UpdateUser";
 import UserInfo from "./Components/UserInfo";
 import CardGame from "./Containers/CardGame";
+import Footer from './Components/Footer';
 
 class App extends Component {
   state = {
@@ -316,6 +317,7 @@ class App extends Component {
             )}
           />
         </Switch>
+        <Footer />
       </div>
     );
   }

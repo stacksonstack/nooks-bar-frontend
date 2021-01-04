@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Board from "../Components/Board";
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
-import {NavLink} from 'react-router-dom'
+
 
 function CardGame(props) {
   const [cards, setCards] = useState([]);
@@ -10,7 +10,7 @@ function CardGame(props) {
   const [dimension, setDimension] = useState(400);
   const [solved, setSolved] = useState([]);
   const [disabled, setDisabled] = useState(false);
-  const [counter, setCounter] = useState(5);
+  const [counter, setCounter] = useState(80);
 
 
   useEffect(() => {
