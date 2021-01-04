@@ -14,11 +14,14 @@ function Welcome(props) {
               <h1 id="title">Welcome!</h1>
             </div>
             <div id="welcome-text">
-              <p>Are you tired of having the same old beer for lunch? Would you like to impress your friends 
+              <p>Are you tired of having the same old beer for lunch or dinner? Would you like to impress your friends 
                 with a cool new beer option the next time you go to a party? Then Nook's Bar is the perfect place for you!
-                Nook's Bar opened in 2020. Once loggged in you can browse through 
-                out wide selection of beers 
-              </p>
+                Browse through our large collection of beers provided by PunkAPI. As a member your can save beers to your own curated list to come back
+                to at anytime or submit a beer to our menu we don't currently have! As a bonus we have a Mix & Match Card game to test your memory skills for fun!
+                
+              </p><p>
+                Nook's Bar opened in 2020 and will expand in the coming months! 
+                </p>
             </div>
             <div id="welcome-image">
               <img alt="Timmy & Tommy" src={`/img/timmy.png`} id="timmy" />

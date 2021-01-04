@@ -248,7 +248,7 @@ class App extends Component {
               <div id="user-beers">
                 <div id="user-beers-container">
                 <div id="user-menu-title">
-                <h1 id="title">User Beers</h1>
+                <h1 id="title">{`${this.state.currentUser.name}`}'s Curated Beer List</h1>
                 </div>
                 <div id="user-menu-beers">
                 <BeersContainer
