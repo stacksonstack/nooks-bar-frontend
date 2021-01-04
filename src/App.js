@@ -18,7 +18,8 @@ class App extends Component {
     currentUserId: 1,
     searchValue: 3.0,
     currentUser: [],
-
+    totalLosses: null,
+    totalWins: null,
   };
 
   async componentDidMount() {
@@ -32,7 +33,8 @@ class App extends Component {
     let userData = await userResponse.json();
     this.setState({ userBeers: userData.beers });
     this.setState({ currentUser: userData });
-
+    this.setState({ totalWins: userData.wins });
+    this.setState({ totalLosses: userData.losses });
   }
 
   addLike = (beerObj) => {
@@ -159,7 +161,7 @@ class App extends Component {
     const { name, email, password, age } = userObj;
     console.log("User Object", userObj);
 
-    fetch(`http://localhost:3000/api/v1/users/1`, {
+    fetch(`http://localhost:3000/api/v1/users/${this.state.currentUserId}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -176,9 +178,40 @@ class App extends Component {
       });
   };
 
-  goBackToBar=()=>{
-    this.props.history.push("/beers")
-  }
+  goBackToBar = () => {
+    this.props.history.push("/beers");
+  };
+
+  setResults = (result) => {
+    if (result === "won") {
+      fetch(`http://localhost:3000/api/v1/users/${this.state.currentUserId}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Accepts: "application/json",
+        },
+        body: JSON.stringify({ wins: this.state.totalWins + 1 }),
+      })
+        .then((resp) => resp.json())
+        .then((data) => {
+          this.setState({ wins: data.wins });
+        });
+    }
+    if (result === "lost") {
+      fetch(`http://localhost:3000/api/v1/users/${this.state.currentUserId}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Accepts: "application/json",
+        },
+        body: JSON.stringify({ losses: this.state.totalLosses + 1 }),
+      })
+        .then((resp) => resp.json())
+        .then((data) => {
+          this.setState({ losses: data.losses });
+        });
+    }
+  };
 
   render() {
     return (
@@ -210,30 +243,29 @@ class App extends Component {
             exact
             path="/beers"
             render={() => (
-            <div id="all-beers">
-              <div id="beers-container">
-                <div id="search">
-                  <Search
-                    searchValue={this.state.searchValue}
-                    searchHandler={this.searchHandler}
-                    searchOption={this.state.searchOption}
-                  />
+              <div id="all-beers">
+                <div id="beers-container">
+                  <div id="search">
+                    <Search
+                      searchValue={this.state.searchValue}
+                      searchHandler={this.searchHandler}
+                      searchOption={this.state.searchOption}
+                    />
+                  </div>
+                  <div id="menu-title">
+                    <h1 id="title">Nook's Beer Menu</h1>
+                  </div>
+                  <div id="menu-beers">
+                    <BeersContainer
+                      beers={this.filteredBeers()}
+                      beersFull={this.state.beers}
+                      addBeer={this.persistUserBeer}
+                      addLike={this.addLike}
+                      addDislike={this.addDislike}
+                    />
+                  </div>
                 </div>
-                <div id="menu-title">
-                  <h1 id="title">Nook's Beer Menu</h1>
-                </div>
-                <div id="menu-beers">
-                  <BeersContainer
-                    beers={this.filteredBeers()}
-                    beersFull={this.state.beers}
-                    addBeer={this.persistUserBeer}
-                    addLike={this.addLike}
-                    addDislike={this.addDislike}
-                  />
-                </div>
-                </div>
-                </div>
-              
+              </div>
             )}
           />
           <Route
@@ -253,23 +285,36 @@ class App extends Component {
             render={() => (
               <div id="user-beers">
                 <div id="user-beers-container">
-                <div id="user-menu-title">
-                <h1 id="title">{`${this.state.currentUser.name}`}'s Curated Beer List</h1>
-                </div>
-                <div id="user-menu-beers">
-                <BeersContainer
-                  beers={this.state.userBeers}
-                  removeBeer={this.removeBeer}
-                  addLike={this.addLike}
-                  addDislike={this.addDislike}
-                />
-                </div>
+                  <div id="user-menu-title">
+                    <h1 id="title">
+                      {`${this.state.currentUser.name}`}'s Curated Beer List
+                    </h1>
+                  </div>
+                  <div id="user-menu-beers">
+                    <BeersContainer
+                      beers={this.state.userBeers}
+                      removeBeer={this.removeBeer}
+                      addLike={this.addLike}
+                      addDislike={this.addDislike}
+                    />
+                  </div>
                 </div>
               </div>
             )}
           />
 
-          <Route path="/cardGame" render={() => <CardGame  user={this.state.currentUserId} totalWins={this.state.currentUser.wins} totalLosses={this.state.currentUser.losses} goBack={this.goBackToBar}/>} />
+          <Route
+            path="/cardGame"
+            render={() => (
+              <CardGame
+                user={this.state.currentUserId}
+                totalWins={this.state.totalWins}
+                totalLosses={this.state.totalLosses}
+                goBack={this.goBackToBar}
+                setResults={this.setResults}
+              />
+            )}
+          />
         </Switch>
       </div>
     );

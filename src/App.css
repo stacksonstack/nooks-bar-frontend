@@ -298,6 +298,12 @@ input {
   transform: rotateY(180deg);
 }
 
+#result-btn{
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
 /* Nav Bar  */
 
 .nav {

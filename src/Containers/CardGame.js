@@ -12,11 +12,6 @@ function CardGame(props) {
   const [disabled, setDisabled] = useState(false);
   const [counter, setCounter] = useState(5);
 
-  // useEffect(()=>{
-  //   fetch(`http://localhost:3000/api/v1/users/${props.user}`)
-  //   .then(resp => resp.json())
-  //   .then(data => console.log("user game",data.user_games))
-  // },[])
 
   useEffect(() => {
     resizeBoard();
@@ -123,13 +118,16 @@ function CardGame(props) {
     if (counter === 0) {
       
       <h1>Game Over</h1>;
+      props.setResults("lost");
       
       console.log("GAME OVER");
     } else if (solved.length >= 15) {
     
       <h1>YOU WON</h1>;
       console.log("YOU WON");
+      props.setResults("won")
       setCounter(0);
+      
     
     } else {
       console.log("Keep going!");
@@ -147,9 +145,10 @@ function CardGame(props) {
         <>
           
           {/* <!-- Button trigger modal --> */}
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+          <div id="result-btn">
+<button id="btn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
 See Results
-</button>
+</button></div>
 
 {/* <!-- Modal --> */}
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
