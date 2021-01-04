@@ -26,6 +26,15 @@ h4 {
   font-family: regularFont2;
 }
 
+#btn{
+  background-color: #c48d3f;
+  color: white;
+  padding: 5px;
+  border-color: #382913;
+}
+#btn:hover{
+  color:#382913;
+}
 p {
   font-family: regularFont;
   font-weight: bold;
