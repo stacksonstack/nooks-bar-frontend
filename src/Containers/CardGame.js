@@ -9,7 +9,7 @@ function CardGame(props) {
   const [dimension, setDimension] = useState(400);
   const [solved, setSolved] = useState([]);
   const [disabled, setDisabled] = useState(false);
-  const [counter, setCounter] = useState(70);
+  const [counter, setCounter] = useState(200);
   const [wins, setWins] = useState(0);
   const [losses, setLosses] = useState(0);
 
@@ -140,9 +140,9 @@ function CardGame(props) {
 
   return (
     
-    <div>
+    <div id="card-game">
       {console.log("user", props.user)}
-      <h2>Nook's Mix & Match Game</h2>
+      <h1 id="title">Nook's Mix & Match Game</h1>
 
       
       {counter === 0 ? (
@@ -180,10 +180,11 @@ See Results
       ) : (
         <>{
         counter === 1 ? (
-          <h1>Time Left: {counter} second </h1>
+          <h1 id="title">Time Left: {counter} second </h1>
         ) : (
           <h1>Time Left: {counter} seconds </h1>
         )}
+        <div id="board">
         <Board
           cards={cards}
           flipped={flipped}
@@ -192,6 +193,7 @@ See Results
           disabled={disabled}
           solved={solved}
         />
+        </div>
         </>
       )}
     </div>

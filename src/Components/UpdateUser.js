@@ -19,7 +19,7 @@ class UpdateUser extends Component {
     return (
       <>
         {this.state && this.props.user ? (
-          <div class="container">
+          <div class="bar-container">
             <div class="bar">
               <img alt="Bar Glass Rack" src={`/img/barTop2.png`} id="bar-top" />
               <div class="frame-container">

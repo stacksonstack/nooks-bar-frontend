@@ -10,6 +10,7 @@ export default function Card({ solved, disabled, handleClick, id, flipped, heigh
     >
       <div className="flipper">
         <img
+          id=""
           style={{ width, height }}
           className={flipped ? "front" : "back"}
           src={flipped || solved ? `/img/${type}.png` : `/img/backImg.jpg`}

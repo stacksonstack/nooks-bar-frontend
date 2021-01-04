@@ -4,7 +4,7 @@ import Signup from "./Signup";
 import Login from "./Login";
 function Welcome(props) {
   return (
-    <div class="container">
+    <div class="bar-container">
       <div class="bar">
         <img alt="Bar Glass Rack" src={`/img/barTop2.png`} id="bar-top" />
         <div class="frame-container">
