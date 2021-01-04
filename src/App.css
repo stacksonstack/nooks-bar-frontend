@@ -27,6 +27,17 @@ input,
 h4 {
   font-family: regularFont2;
 }
+h4{
+  color: #382913;
+}
+
+h4:hover{
+color: #c48d3f;
+/* text-decoration-color:  #c48d3f; */
+}
+
+
+
 
 #btn{
   background-color: #c48d3f;
@@ -113,10 +124,13 @@ input {
   grid-template-areas:
     "umtitle"
     "umbeers";
-  background-color: white;
+  background-color:rgb(216, 212, 203);
   width: 85%;
   text-align: center;
   padding-top: 50px;
+  border-style: solid;
+  border-color: rgb(38, 33, 26);
+  border-width: 10px;
 }
 #user-menu-title {
   grid-area: umtitle;
@@ -142,15 +156,18 @@ input {
     "search"
     "mtitle"
     "mbeers";
-  background-color: white;
+    background-color:rgb(216, 212, 203);
   width: 85%;
   text-align: center;
   padding-top: 50px;
+  border-style: solid;
+  border-color: rgb(38, 33, 26);
+  border-width: 10px;
 }
 
 #search-bar {
   grid-area: search;
-  background-color: white;
+  
 }
 
 #menu-title {
@@ -177,6 +194,7 @@ input {
   padding-right: 50px;
   width: 300px;
   height: 500px;
+  
 }
 
 /* BAR LOOK  */
@@ -238,7 +256,7 @@ input {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  
+
 }
 .flip-container {
   perspective: 1000px;

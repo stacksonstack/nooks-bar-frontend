@@ -16,8 +16,8 @@ class BeerPreview extends Component {
   render() {
     return (
       <div id="beer-preview">
-        <NavLink to={`/beers/${this.props.beer.id}`}>
-          <h4>{this.props.beer.name}</h4>
+        <NavLink to={`/beers/${this.props.beer.id}`} style={{ textDecorationColor: '#c48d3f' }}>
+          <h4 >{this.props.beer.name}</h4>
         </NavLink>
         <img src={this.props.beer.image_url} alt={this.props.beer.name} />
         <p>{this.props.beer.likes} Likes</p>

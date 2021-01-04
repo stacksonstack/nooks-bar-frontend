@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Board from "../Components/Board";
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
+import {NavLink} from 'react-router-dom'
 
 function CardGame(props) {
   const [cards, setCards] = useState([]);
@@ -9,15 +10,13 @@ function CardGame(props) {
   const [dimension, setDimension] = useState(400);
   const [solved, setSolved] = useState([]);
   const [disabled, setDisabled] = useState(false);
-  const [counter, setCounter] = useState(200);
-  const [wins, setWins] = useState(0);
-  const [losses, setLosses] = useState(0);
+  const [counter, setCounter] = useState(5);
 
-  useEffect(()=>{
-    fetch(`http://localhost:3000/api/v1/users/${props.user}`)
-    .then(resp => resp.json())
-    .then(data => console.log("user game",data.user_games))
-  },[])
+  // useEffect(()=>{
+  //   fetch(`http://localhost:3000/api/v1/users/${props.user}`)
+  //   .then(resp => resp.json())
+  //   .then(data => console.log("user game",data.user_games))
+  // },[])
 
   useEffect(() => {
     resizeBoard();
@@ -122,17 +121,16 @@ function CardGame(props) {
 
   const gameOver = () => {
     if (counter === 0) {
-      console.log("before losses", losses);
+      
       <h1>Game Over</h1>;
       
-      console.log("after losses", losses);
       console.log("GAME OVER");
     } else if (solved.length >= 15) {
-      console.log("before wins", wins);
+    
       <h1>YOU WON</h1>;
       console.log("YOU WON");
       setCounter(0);
-      console.log("after wins", wins);
+    
     } else {
       console.log("Keep going!");
     }
@@ -166,11 +164,12 @@ See Results
         </button>
       </div>
       <div class="modal-body">
-        <p>Wins: </p>
-        <p>Losses: </p>
+        <p>Wins: {props.totalWins} </p>
+        <p>Losses: {props.totalLosses} </p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Go Back To Bar</button>
+      
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" onClick={()=> props.goBack()}>Go Back To Bar</button>
         <button type="button" class="btn btn-primary">Play Again</button>
       </div>
     </div>

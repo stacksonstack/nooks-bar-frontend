@@ -18,6 +18,7 @@ class App extends Component {
     currentUserId: 1,
     searchValue: 3.0,
     currentUser: [],
+
   };
 
   async componentDidMount() {
@@ -31,6 +32,7 @@ class App extends Component {
     let userData = await userResponse.json();
     this.setState({ userBeers: userData.beers });
     this.setState({ currentUser: userData });
+
   }
 
   addLike = (beerObj) => {
@@ -174,6 +176,10 @@ class App extends Component {
       });
   };
 
+  goBackToBar=()=>{
+    this.props.history.push("/beers")
+  }
+
   render() {
     return (
       <div id="background">
@@ -263,7 +269,7 @@ class App extends Component {
             )}
           />
 
-          <Route path="/cardGame" render={() => <CardGame  user={this.state.currentUserId}/>} />
+          <Route path="/cardGame" render={() => <CardGame  user={this.state.currentUserId} totalWins={this.state.currentUser.wins} totalLosses={this.state.currentUser.losses} goBack={this.goBackToBar}/>} />
         </Switch>
       </div>
     );
