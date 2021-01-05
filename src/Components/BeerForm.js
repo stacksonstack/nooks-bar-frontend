@@ -6,11 +6,10 @@ class BeerForm extends Component {
     tag_line: "",
     description: "",
     image_url: "",
-    food_pairing: [],
     pair1: "",
     pair2: "",
     pair3: "",
-    abv: null,
+    abv: 3.0,
   };
 
   handleChanges = (event) => {
@@ -21,22 +20,12 @@ class BeerForm extends Component {
 
   localSubmitHandler = (event) => {
     event.preventDefault();
-    this.handleFoodPairings(event);
-    console.log("before", this.state);
+    
     this.props.addNewBeer(this.state);
-    console.log("after", this.state);
+   
   };
 
-  handleFoodPairings = (event) => {
-    this.setState({
-      food_pairing: [
-        ...this.state.food_pairing,
-        this.state.pair1,
-        this.state.pair2,
-        this.state.pair3,
-      ],
-    });
-  };
+ 
 
   render() {
     return (

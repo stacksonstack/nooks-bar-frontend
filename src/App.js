@@ -111,26 +111,30 @@ class App extends Component {
       tag_line,
       description,
       image_url,
-      food_pairing,
+      
+      pair1,
+      pair2,
+      pair3,
       abv,
     } = beerObj;
-
+    let sample = {
+      name,
+      tag_line,
+      description,
+      image_url,
+      food_pairing: [pair1, pair2, pair3],
+      abv,
+      likes: 0,
+      dislikes: 0,
+    }
+    
     fetch("http://localhost:3000/api/v1/beers", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Accepts: "application/json",
       },
-      body: JSON.stringify({
-        name,
-        tag_line,
-        description,
-        image_url,
-        food_pairing,
-        abv,
-        likes: 0,
-        dislikes: 0,
-      }),
+      body: JSON.stringify(sample),
     })
       .then((resp) => resp.json())
       .then((data) => {
@@ -183,66 +187,66 @@ class App extends Component {
     this.props.history.push("/beers");
   };
 
-  setResults = (result) => {
-    if (result === "won") {
-      fetch(`http://localhost:3000/api/v1/users/${this.state.currentUserId}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          Accepts: "application/json",
-        },
-        body: JSON.stringify({ wins: this.state.totalWins + 1 }),
-      })
-        .then((resp) => resp.json())
-        .then((data) => {
-          this.setState({ wins: data.wins });
-        });
-    }
-    if (result === "lost") {
-      fetch(`http://localhost:3000/api/v1/users/${this.state.currentUserId}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          Accepts: "application/json",
-        },
-        body: JSON.stringify({ losses: this.state.totalLosses + 1 }),
-      })
-        .then((resp) => resp.json())
-        .then((data) => {
-          this.setState({ losses: data.losses });
-        });
-    }
-  };
+  // setResults = (result) => {
+  //   if (result === "won") {
+  //     fetch(`http://localhost:3000/api/v1/users/${this.state.currentUserId}`, {
+  //       method: "PATCH",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Accepts: "application/json",
+  //       },
+  //       body: JSON.stringify({ wins: this.state.totalWins + 1 }),
+  //     })
+  //       .then((resp) => resp.json())
+  //       .then((data) => {
+  //         this.setState({ wins: data.wins });
+  //       });
+  //   }
+  //   if (result === "lost") {
+  //     fetch(`http://localhost:3000/api/v1/users/${this.state.currentUserId}`, {
+  //       method: "PATCH",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Accepts: "application/json",
+  //       },
+  //       body: JSON.stringify({ losses: this.state.totalLosses + 1 }),
+  //     })
+  //       .then((resp) => resp.json())
+  //       .then((data) => {
+  //         this.setState({ losses: data.losses });
+  //       });
+  //   }
+  // };
 
-  //  setLoss=()=>{
-  //        fetch(`http://localhost:3000/api/v1/users/${this.state.currentUserId}`, {
-  //            method: "PATCH",
-  //            headers: {
-  //              "Content-Type": "application/json",
-  //              Accepts: "application/json",
-  //            },
-  //            body: JSON.stringify({ losses: this.state.totalLosses + 1 }),
-  //          })
-  //            .then((resp) => resp.json())
-  //            .then((data) => {
-  //              this.setState({ losses: data.losses });
-  //            });
-  //      }
+   setLoss=()=>{
+         fetch(`http://localhost:3000/api/v1/users/${this.state.currentUserId}`, {
+             method: "PATCH",
+             headers: {
+               "Content-Type": "application/json",
+               Accepts: "application/json",
+             },
+             body: JSON.stringify({ losses: this.state.totalLosses + 1 }),
+           })
+             .then((resp) => resp.json())
+             .then((data) => {
+               this.setState({ losses: data.losses });
+             });
+       }
     
-  //      setWin = () => {
-  //          fetch(`http://localhost:3000/api/v1/users/${this.state.currentUserId}`, {
-  //            method: "PATCH",
-  //            headers: {
-  //              "Content-Type": "application/json",
-  //              Accepts: "application/json",
-  //            },
-  //            body: JSON.stringify({ wins: this.state.totalWins + 1 }),
-  //          })
-  //            .then((resp) => resp.json())
-  //            .then((data) => {
-  //              this.setState({ wins: data.wins });
-  //            });
-  //      };
+       setWin = () => {
+           fetch(`http://localhost:3000/api/v1/users/${this.state.currentUserId}`, {
+             method: "PATCH",
+             headers: {
+               "Content-Type": "application/json",
+               Accepts: "application/json",
+             },
+             body: JSON.stringify({ wins: this.state.totalWins + 1 }),
+           })
+             .then((resp) => resp.json())
+             .then((data) => {
+               this.setState({ wins: data.wins });
+             });
+       };
     
   render() {
     return (
@@ -334,7 +338,7 @@ class App extends Component {
             )}
           />
 
-          <Route
+          {/* <Route
             path="/cardGame"
             render={() => (
               <CardGame
@@ -345,9 +349,9 @@ class App extends Component {
                 setResults={this.setResults}
               />
             )}
-          />
+          /> */}
 
-{/* <Route
+<Route
             path="/cardGame"
             render={() => (
               <CardGame
@@ -359,7 +363,7 @@ class App extends Component {
                 setLoss={this.setLoss}
               />
             )}
-          /> */}
+          />
         </Switch>
         <Footer />
       </div>

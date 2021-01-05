@@ -9,7 +9,7 @@ function CardGame(props) {
   const [dimension, setDimension] = useState(400);
   const [solved, setSolved] = useState([]);
   const [disabled, setDisabled] = useState(false);
-  const [counter, setCounter] = useState(5);
+  const [counter, setCounter] = useState(80);
 
   useEffect(() => {
     resizeBoard();
@@ -25,8 +25,21 @@ function CardGame(props) {
 
   useEffect(() => {
     counter > 0 && setTimeout(() => setCounter(counter - 1), 1000);
+    
     gameOver();
+    
   }, [counter]);
+
+//   var sampleVar;
+// function sampleFunction(){
+//   sampleVar = setTimeout(() => { 
+//     alert("This timer will be stopped") 
+//   }, 3000);
+// }
+// function sampleStopFunction(){
+//   clearTimeout(sampleVar);
+// }
+// sampleFunction();
 
   const resizeBoard = () => {
     setDimension(
@@ -112,40 +125,42 @@ function CardGame(props) {
     flipped.includes(id);
   };
 
-  const gameOver = () => {
-    if (counter === 0) {
-
-      <h1>Game Over</h1>;
-      props.setResults("lost");
-
-      console.log("GAME OVER");
-    } else if (solved.length >= 15) {
-
-      <h1>YOU WON</h1>;
-      console.log("YOU WON");
-      props.setResults("won")
-      setCounter(0);
-
-    } else {
-      console.log("Keep going!");
-    }
-  };
   // const gameOver = () => {
   //   if (counter === 0) {
+
   //     <h1>Game Over</h1>;
-  //     props.setLoss();
+  //     props.setResults("lost");
 
   //     console.log("GAME OVER");
   //   } else if (solved.length >= 15) {
-  //     <h1>YOU WON</h1>;
 
+  //     <h1>YOU WON</h1>;
+  //     console.log("YOU WON");
+  //     props.setResults("won")
   //     setCounter(0);
 
-  //     props.setWin();
   //   } else {
   //     console.log("Keep going!");
   //   }
   // };
+
+  
+  const gameOver = () => {
+    if(solved.length >= 15) {
+      <h1>YOU WON</h1>;
+      setCounter(0);
+      props.setWin();
+      
+      console.log("You won!");
+      
+    }if(counter === 0 && solved.length < 15) {
+      <h1>Game Over</h1>;
+      props.setLoss();
+
+      console.log("GAME OVER");  
+      
+    }
+  };
 
   return (
     <div id="card-game">
@@ -162,6 +177,7 @@ function CardGame(props) {
               class="btn btn-primary"
               data-toggle="modal"
               data-target="#exampleModalCenter"
+              
             >
               See Results
             </button>
