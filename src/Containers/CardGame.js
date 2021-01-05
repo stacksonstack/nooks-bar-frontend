@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Board from "../Components/Board";
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/js/bootstrap.js';
-
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap/dist/js/bootstrap.js";
 
 function CardGame(props) {
   const [cards, setCards] = useState([]);
@@ -10,8 +9,7 @@ function CardGame(props) {
   const [dimension, setDimension] = useState(400);
   const [solved, setSolved] = useState([]);
   const [disabled, setDisabled] = useState(false);
-  const [counter, setCounter] = useState(80);
-
+  const [counter, setCounter] = useState(5);
 
   useEffect(() => {
     resizeBoard();
@@ -116,82 +114,123 @@ function CardGame(props) {
 
   const gameOver = () => {
     if (counter === 0) {
-      
+
       <h1>Game Over</h1>;
       props.setResults("lost");
-      
+
       console.log("GAME OVER");
     } else if (solved.length >= 15) {
-    
+
       <h1>YOU WON</h1>;
       console.log("YOU WON");
       props.setResults("won")
       setCounter(0);
-      
-    
+
     } else {
       console.log("Keep going!");
     }
   };
+  // const gameOver = () => {
+  //   if (counter === 0) {
+  //     <h1>Game Over</h1>;
+  //     props.setLoss();
+
+  //     console.log("GAME OVER");
+  //   } else if (solved.length >= 15) {
+  //     <h1>YOU WON</h1>;
+
+  //     setCounter(0);
+
+  //     props.setWin();
+  //   } else {
+  //     console.log("Keep going!");
+  //   }
+  // };
 
   return (
-    
     <div id="card-game">
       {console.log("user", props.user)}
       <h1 id="title">Nook's Mix & Match Game</h1>
 
-      
       {counter === 0 ? (
         <>
-          
           {/* <!-- Button trigger modal --> */}
           <div id="result-btn">
-<button id="btn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-See Results
-</button></div>
+            <button
+              id="btn"
+              type="button"
+              class="btn btn-primary"
+              data-toggle="modal"
+              data-target="#exampleModalCenter"
+            >
+              See Results
+            </button>
+          </div>
 
-{/* <!-- Modal --> */}
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenterTitle">{solved.length >= 15
+          {/* <!-- Modal --> */}
+          <div
+            class="modal fade"
+            id="exampleModalCenter"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="exampleModalCenterTitle"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalCenterTitle">
+                    {solved.length >= 15
                       ? "You Won!"
-                      : "Oops! Better Luck Next Time!"}</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>Wins: {props.totalWins} </p>
-        <p>Losses: {props.totalLosses} </p>
-      </div>
-      <div class="modal-footer">
-      
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" onClick={()=> props.goBack()}>Go Back To Bar</button>
-        <button type="button" class="btn btn-primary">Play Again</button>
-      </div>
-    </div>
-  </div>
-</div>
+                      : "Oops! Better Luck Next Time!"}
+                  </h5>
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p>Wins: {props.totalWins} </p>
+                  <p>Losses: {props.totalLosses} </p>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-dismiss="modal"
+                    onClick={() => props.goBack()}
+                  >
+                    Go Back To Bar
+                  </button>
+                  <button type="button" class="btn btn-primary">
+                    Play Again
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </>
       ) : (
-        <>{
-        counter === 1 ? (
-          <h1 id="title">Time Left: {counter} second </h1>
-        ) : (
-          <h1>Time Left: {counter} seconds </h1>
-        )}
-        <div id="board">
-        <Board
-          cards={cards}
-          flipped={flipped}
-          handleClick={handleClick}
-          dimension={dimension}
-          disabled={disabled}
-          solved={solved}
-        />
-        </div>
+        <>
+          {counter === 1 ? (
+            <h1 id="title">Time Left: {counter} second </h1>
+          ) : (
+            <h1>Time Left: {counter} seconds </h1>
+          )}
+          <div id="board">
+            <Board
+              cards={cards}
+              flipped={flipped}
+              handleClick={handleClick}
+              dimension={dimension}
+              disabled={disabled}
+              solved={solved}
+            />
+          </div>
         </>
       )}
     </div>

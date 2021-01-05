@@ -4,6 +4,7 @@ class Login extends Component {
   render() {
     return (
       <>
+        {/* <!-- Button trigger modal --> */}
         <button
           id="btn"
           type="button"
@@ -13,8 +14,8 @@ class Login extends Component {
         >
           Login
         </button>
-
-        {/* <!-- Modal --> */}
+        {/* 
+<!-- Modal --> */}
         <div
           class="modal fade"
           id="exampleModal"

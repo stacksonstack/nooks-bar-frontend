@@ -214,6 +214,36 @@ class App extends Component {
     }
   };
 
+  //  setLoss=()=>{
+  //        fetch(`http://localhost:3000/api/v1/users/${this.state.currentUserId}`, {
+  //            method: "PATCH",
+  //            headers: {
+  //              "Content-Type": "application/json",
+  //              Accepts: "application/json",
+  //            },
+  //            body: JSON.stringify({ losses: this.state.totalLosses + 1 }),
+  //          })
+  //            .then((resp) => resp.json())
+  //            .then((data) => {
+  //              this.setState({ losses: data.losses });
+  //            });
+  //      }
+    
+  //      setWin = () => {
+  //          fetch(`http://localhost:3000/api/v1/users/${this.state.currentUserId}`, {
+  //            method: "PATCH",
+  //            headers: {
+  //              "Content-Type": "application/json",
+  //              Accepts: "application/json",
+  //            },
+  //            body: JSON.stringify({ wins: this.state.totalWins + 1 }),
+  //          })
+  //            .then((resp) => resp.json())
+  //            .then((data) => {
+  //              this.setState({ wins: data.wins });
+  //            });
+  //      };
+    
   render() {
     return (
       <div id="background">
@@ -316,6 +346,20 @@ class App extends Component {
               />
             )}
           />
+
+{/* <Route
+            path="/cardGame"
+            render={() => (
+              <CardGame
+                user={this.state.currentUserId}
+                totalWins={this.state.totalWins}
+                totalLosses={this.state.totalLosses}
+                goBack={this.goBackToBar}
+                setWin={this.setWin}
+                setLoss={this.setLoss}
+              />
+            )}
+          /> */}
         </Switch>
         <Footer />
       </div>
