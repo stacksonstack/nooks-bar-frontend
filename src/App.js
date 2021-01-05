@@ -10,7 +10,7 @@ import Welcome from "./Components/Welcome";
 import UpdateUser from "./Components/UpdateUser";
 import UserInfo from "./Components/UserInfo";
 import CardGame from "./Containers/CardGame";
-import Footer from './Components/Footer';
+import Footer from "./Components/Footer";
 
 class App extends Component {
   state = {
@@ -111,7 +111,7 @@ class App extends Component {
       tag_line,
       description,
       image_url,
-      
+
       pair1,
       pair2,
       pair3,
@@ -126,8 +126,8 @@ class App extends Component {
       abv,
       likes: 0,
       dislikes: 0,
-    }
-    
+    };
+
     fetch("http://localhost:3000/api/v1/beers", {
       method: "POST",
       headers: {
@@ -187,67 +187,36 @@ class App extends Component {
     this.props.history.push("/beers");
   };
 
-  // setResults = (result) => {
-  //   if (result === "won") {
-  //     fetch(`http://localhost:3000/api/v1/users/${this.state.currentUserId}`, {
-  //       method: "PATCH",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         Accepts: "application/json",
-  //       },
-  //       body: JSON.stringify({ wins: this.state.totalWins + 1 }),
-  //     })
-  //       .then((resp) => resp.json())
-  //       .then((data) => {
-  //         this.setState({ wins: data.wins });
-  //       });
-  //   }
-  //   if (result === "lost") {
-  //     fetch(`http://localhost:3000/api/v1/users/${this.state.currentUserId}`, {
-  //       method: "PATCH",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         Accepts: "application/json",
-  //       },
-  //       body: JSON.stringify({ losses: this.state.totalLosses + 1 }),
-  //     })
-  //       .then((resp) => resp.json())
-  //       .then((data) => {
-  //         this.setState({ losses: data.losses });
-  //       });
-  //   }
-  // };
+  setLoss = () => {
+    fetch(`http://localhost:3000/api/v1/users/${this.state.currentUserId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Accepts: "application/json",
+      },
+      body: JSON.stringify({ losses: this.state.totalLosses + 1 }),
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        this.setState({ losses: data.losses });
+      });
+  };
 
-   setLoss=()=>{
-         fetch(`http://localhost:3000/api/v1/users/${this.state.currentUserId}`, {
-             method: "PATCH",
-             headers: {
-               "Content-Type": "application/json",
-               Accepts: "application/json",
-             },
-             body: JSON.stringify({ losses: this.state.totalLosses + 1 }),
-           })
-             .then((resp) => resp.json())
-             .then((data) => {
-               this.setState({ losses: data.losses });
-             });
-       }
-    
-       setWin = () => {
-           fetch(`http://localhost:3000/api/v1/users/${this.state.currentUserId}`, {
-             method: "PATCH",
-             headers: {
-               "Content-Type": "application/json",
-               Accepts: "application/json",
-             },
-             body: JSON.stringify({ wins: this.state.totalWins + 1 }),
-           })
-             .then((resp) => resp.json())
-             .then((data) => {
-               this.setState({ wins: data.wins });
-             });
-       };
-    
+  setWin = () => {
+    fetch(`http://localhost:3000/api/v1/users/${this.state.currentUserId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Accepts: "application/json",
+      },
+      body: JSON.stringify({ wins: this.state.totalWins + 1 }),
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        this.setState({ wins: data.wins });
+      });
+  };
+
   render() {
     return (
       <div id="background">
@@ -337,21 +306,7 @@ class App extends Component {
               </div>
             )}
           />
-
-          {/* <Route
-            path="/cardGame"
-            render={() => (
-              <CardGame
-                user={this.state.currentUserId}
-                totalWins={this.state.totalWins}
-                totalLosses={this.state.totalLosses}
-                goBack={this.goBackToBar}
-                setResults={this.setResults}
-              />
-            )}
-          /> */}
-
-<Route
+          <Route
             path="/cardGame"
             render={() => (
               <CardGame

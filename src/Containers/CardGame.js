@@ -10,6 +10,7 @@ function CardGame(props) {
   const [solved, setSolved] = useState([]);
   const [disabled, setDisabled] = useState(false);
   const [counter, setCounter] = useState(80);
+  const [checkWin, setCheckWin] = useState(false);
 
   useEffect(() => {
     resizeBoard();
@@ -17,35 +18,43 @@ function CardGame(props) {
   }, []); //with the [], this will only get called the first time
   useEffect(() => {
     const resizeListener = window.addEventListener("resize", resizeBoard);
-    return () => window.removeEventListener("resize", resizeListener);
+    return () => window.removeEventListener("resize", resizeListener); // resizes the board depending on the width + height of viewport
   });
   useEffect(() => {
     preloadImages();
   }, [cards]);
 
+  // useEffect(() => {
+  //   counter > 0 && setTimeout(() => setCounter(counter - 1), 1000);
+    
+  //   gameOver();
+    
+  // }, [counter]);
+
+  var sampleVar;
+  
+
   useEffect(() => {
-    counter > 0 && setTimeout(() => setCounter(counter - 1), 1000);
+    if(counter > 0){
+    sampleVar =  setTimeout(() => setCounter(counter - 1), 1000);}
     
     gameOver();
     
   }, [counter]);
 
-//   var sampleVar;
-// function sampleFunction(){
-//   sampleVar = setTimeout(() => { 
-//     alert("This timer will be stopped") 
-//   }, 3000);
-// }
-// function sampleStopFunction(){
-//   clearTimeout(sampleVar);
-// }
-// sampleFunction();
+
+const sampleStopFunction=()=>{
+  clearTimeout(sampleVar);
+  setCheckWin(true) 
+  setCounter(0);
+}
+
 
   const resizeBoard = () => {
     setDimension(
       Math.min(
-        document.documentElement.clientWidth,
-        document.documentElement.clientHeight
+        document.documentElement.clientWidth, // the viewport's width
+        document.documentElement.clientHeight // the viewport's height
       )
     );
   };
@@ -54,6 +63,7 @@ function CardGame(props) {
     cards.map((card) => {
       const src = `/img/${card.type}.png`;
       new Image().src = src;
+      // The Image() constructor creates a new HTMLImageElement instance. It is functionally equivalent to document.createElement('img')
     });
   };
   const shuffle = (array) => {
@@ -125,30 +135,11 @@ function CardGame(props) {
     flipped.includes(id);
   };
 
-  // const gameOver = () => {
-  //   if (counter === 0) {
-
-  //     <h1>Game Over</h1>;
-  //     props.setResults("lost");
-
-  //     console.log("GAME OVER");
-  //   } else if (solved.length >= 15) {
-
-  //     <h1>YOU WON</h1>;
-  //     console.log("YOU WON");
-  //     props.setResults("won")
-  //     setCounter(0);
-
-  //   } else {
-  //     console.log("Keep going!");
-  //   }
-  // };
-
-  
+ 
   const gameOver = () => {
     if(solved.length >= 15) {
       <h1>YOU WON</h1>;
-      setCounter(0);
+      sampleStopFunction();
       props.setWin();
       
       console.log("You won!");
@@ -167,7 +158,7 @@ function CardGame(props) {
       {console.log("user", props.user)}
       <h1 id="title">Nook's Mix & Match Game</h1>
 
-      {counter === 0 ? (
+      {counter === 0  ? (
         <>
           {/* <!-- Button trigger modal --> */}
           <div id="result-btn">
@@ -210,8 +201,7 @@ function CardGame(props) {
                   </button>
                 </div>
                 <div class="modal-body">
-                  <p>Wins: {props.totalWins} </p>
-                  <p>Losses: {props.totalLosses} </p>
+                  {checkWin === false ? (<> <p>Wins: {props.totalWins } </p> <p>Losses: {props.totalLosses + 1} </p></>) : ( <> <p>Wins: {props.totalWins + 1} </p> <p>Losses: {props.totalLosses} </p></> )}
                 </div>
                 <div class="modal-footer">
                   <button
