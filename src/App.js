@@ -16,7 +16,7 @@ class App extends Component {
   state = {
     beers: [],
     userBeers: [],
-    currentUserId: 1,
+    currentUserId: null,
     searchValue: 3.0,
     currentUser: [],
     totalLosses: null,
@@ -217,6 +217,26 @@ class App extends Component {
       });
   };
 
+  loginSubmitHandler = (email) => {
+    fetch(`http://localhost:3000/api/v1/users/`)
+      .then((r) => r.json())
+      .then((data) => {
+        data.forEach((user) => {
+          if (email === user.email) {
+            this.setState({currentUserId: user.id})
+            this.setState({ userBeers: user.beers });
+    this.setState({ currentUser: user });
+    this.setState({ totalWins: user.wins });
+    this.setState({ totalLosses: user.losses });
+            this.props.history.push(`/savedBeers`)
+          }
+        });
+      });
+  };
+  refreshPage=() =>{
+    window.location.reload(false);
+  }
+
   render() {
     return (
       <div id="background">
@@ -229,7 +249,7 @@ class App extends Component {
             path="/beers/new"
             render={() => <BeerForm addNewBeer={this.addNewBeer} />}
           />
-          <Route path="/welcome" render={() => <Welcome />} />
+          <Route exact path="/" render={() => <Welcome login={this.loginSubmitHandler} />} />
           <Route
             path="/user"
             render={() => (
@@ -266,6 +286,7 @@ class App extends Component {
                       addBeer={this.persistUserBeer}
                       addLike={this.addLike}
                       addDislike={this.addDislike}
+                      user={this.state.currentUserId}
                     />
                   </div>
                 </div>
@@ -281,6 +302,7 @@ class App extends Component {
                 addBeer={this.persistUserBeer}
                 addLike={this.addLike}
                 addDislike={this.addDislike}
+                user={this.state.currentUserId}
               />
             )}
           />
@@ -300,6 +322,7 @@ class App extends Component {
                       removeBeer={this.removeBeer}
                       addLike={this.addLike}
                       addDislike={this.addDislike}
+                      user={this.state.currentUserId}
                     />
                   </div>
                 </div>
@@ -316,6 +339,7 @@ class App extends Component {
                 goBack={this.goBackToBar}
                 setWin={this.setWin}
                 setLoss={this.setLoss}
+                refreshPage={this.refreshPage}
               />
             )}
           />

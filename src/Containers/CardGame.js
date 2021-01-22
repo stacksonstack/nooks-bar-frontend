@@ -9,7 +9,7 @@ function CardGame(props) {
   const [dimension, setDimension] = useState(400);
   const [solved, setSolved] = useState([]);
   const [disabled, setDisabled] = useState(false);
-  const [counter, setCounter] = useState(10);
+  const [counter, setCounter] = useState(20);
   const [checkWin, setCheckWin] = useState(false);
 
   useEffect(() => {
@@ -24,14 +24,9 @@ function CardGame(props) {
     preloadImages();
   }, [cards]);
 
-  // useEffect(() => {
-  //   counter > 0 && setTimeout(() => setCounter(counter - 1), 1000);
-    
-  //   gameOver();
-    
-  // }, [counter]);
+ 
 
-  var sampleVar;
+  let sampleVar;
   
 
   useEffect(() => {
@@ -115,7 +110,7 @@ const sampleStopFunction=()=>{
         setSolved([...solved, flipped[0], id]);
         resetCards();
       } else {
-        setTimeout(resetCards, 2000);
+        setTimeout(resetCards, 1000);
       }
     }
   };
@@ -153,9 +148,7 @@ const sampleStopFunction=()=>{
     }
   };
 
-  const refreshPage=() =>{
-    window.location.reload(false);
-  }
+  
 
   return (
     <div id="card-game">
@@ -216,7 +209,7 @@ const sampleStopFunction=()=>{
                   >
                     Go Back To Bar
                   </button>
-                  <button onClick={()=> refreshPage()} type="button" class="btn btn-primary">
+                  <button onClick={()=> props.refreshPage()} type="button" class="btn btn-primary">
                     Play Again
                   </button>
                 </div>

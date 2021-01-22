@@ -1,6 +1,24 @@
 import React, { Component } from "react";
 
 class Login extends Component {
+
+  state = {
+    email: "",
+    password: ""
+  };
+
+  handleChanges = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  localSubmitHandler = (event, email) => {
+    event.preventDefault();
+    
+    this.props.login(email)
+   
+  };
   render() {
     return (
       <>
@@ -40,33 +58,34 @@ class Login extends Component {
                 </button>
               </div>
               <div class="modal-body">
-                <form>
-                  <label>Email</label>
+                <form >
+                  <label>Email</label><br/>
                   <input
                     type="text"
-                    value={null}
+                    value={this.state.email}
                     name="email"
-                    onChange={null}
-                  />
-                  <label>Password</label>
+                    onChange={this.handleChanges}
+                  /><br/><br/>
+                  <label>Password</label><br/>
                   <input
-                    type="text"
-                    value={null}
+                    type="password"
+                    value={this.state.password}
                     name="password"
-                    onChange={null}
+                    onChange={this.handleChanges}
                   />
-                  <button>Login!</button>
+                
                 </form>
               </div>
               <div class="modal-footer">
                 <button
+                id="btn"
                   type="button"
                   class="btn btn-secondary"
                   data-dismiss="modal"
                 >
                   Close
                 </button>
-                <button type="button" class="btn btn-primary">
+                <button id="btn" onClick={(e)=>this.localSubmitHandler(e, this.state.email)} type="button" class="btn btn-primary" data-dismiss="modal">
                   Login
                 </button>
               </div>

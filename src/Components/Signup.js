@@ -39,27 +39,28 @@ class Signup extends Component{
               </button>
             </div>
             <div class="modal-body"><form>
-                    <label>Name</label>
-                    <input type="text" value={null} name="name" onChange={null}/>
-                    <label>Age</label>
-                    <input type="text" value={null} name="age" onChange={null}/>
-                    <label>Email</label>
-                    <input type="text" value={null} name="email" onChange={null}/>
-                    <label>Choose Password</label>
-                    <input type="text" value={null} name="password" onChange={null}/>
-                    <label>Re-enter Password</label>
-                    <input type="text" value={null} name="password2" onChange={null}/>
-                    <button>Sign Up!</button>
+                    <label>Name</label><br/>
+                    <input type="text" value={null} name="name" onChange={null}/><br/><br/>
+                    <label>Age</label><br/>
+                    <input type="text" value={null} name="age" onChange={null}/><br/><br/>
+                    <label>Email</label><br/>
+                    <input type="text" value={null} name="email" onChange={null}/><br/><br/>
+                    <label>Choose Password</label><br/>
+                    <input type="text" value={null} name="password" onChange={null}/><br/><br/>
+                    <label>Re-enter Password</label><br/>
+                    <input type="text" value={null} name="password2" onChange={null}/><br/><br/>
+                    <button id="btn">Sign Up!</button>
                 </form></div>
             <div class="modal-footer">
               <button
+              id="btn"
                 type="button"
                 class="btn btn-secondary"
                 data-dismiss="modal"
               >
                 Close
               </button>
-              <button type="button" class="btn btn-primary">
+              <button id="btn" type="button" class="btn btn-primary">
                 Sign Up
               </button>
             </div>

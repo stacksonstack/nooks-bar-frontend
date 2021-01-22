@@ -27,7 +27,7 @@ function Welcome(props) {
               <img alt="Timmy & Tommy" src={`/img/timmy.png`} id="timmy" />
             </div>
             <div id="welcome-btn">
-              <Login />
+              <Login login={props.login}/>
             
           
               <Signup />

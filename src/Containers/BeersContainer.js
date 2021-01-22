@@ -12,7 +12,7 @@ class BeersContainer extends Component {
   render() {
     return (
       <>
-        {this.props.beers.length === 0 ? (
+       {this.props.beers.length === 0 ? (
           this.props.removeBeer ? <h1>Add Beers To View</h1>: <h1>Loading...</h1>
         ) : (
           <>
@@ -46,7 +46,8 @@ class BeersContainer extends Component {
              
             </Switch>
           </>
-        )}
+        )} 
+        
       </>
     );
   }
