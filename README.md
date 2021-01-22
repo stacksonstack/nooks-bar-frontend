@@ -7,6 +7,10 @@ This app enables customers to browse through our large collection of beers, save
 - once you've cloned the repo run 
 - In terminal run `bundle install`
 
+## Backend Repo
+- https://github.com/stacksonstack/nooks-bar-backend
+
+
 ## Contributors
 - Stacey Carrillo 
 - Anthony Jimenez (helped to debug) 
