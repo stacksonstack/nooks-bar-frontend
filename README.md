@@ -1,15 +1,25 @@
 # Nook's Bar Frontend
-
 This app enables customers to browse through our large collection of beers, save beers to their personalized list, and submit new ones! The app includes a Mix & Match Card game to test your memory skills for fun!
 
 
-- To use this application fork this repo 
-- once you've cloned the repo run 
-- In terminal run `bundle install`
+## Built With
+- Javascript
+- React
+- HTML
+- CSS 
+- Bootstrap *only the modals are styled with bootstrap*
+
+## Getting Started
+- Fork this repo 
+- If you haven't already go to the backend repository and follow setup instructions before continuing
+- In terminal run `npm i`
+- In terminal run `npm start` and visit to start application
 
 ## Backend Repo
 - https://github.com/stacksonstack/nooks-bar-backend
 
+## Demo
+-https://youtu.be/mhnmv0FqU8M
 
 ## Contributors
 - Stacey Carrillo 
