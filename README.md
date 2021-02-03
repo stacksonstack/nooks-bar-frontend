@@ -19,7 +19,7 @@ This app enables customers to browse through our large collection of beers, save
 - https://github.com/stacksonstack/nooks-bar-backend
 
 ## Demo
--https://youtu.be/mhnmv0FqU8M
+- https://youtu.be/mhnmv0FqU8M
 
 ## Contributors
 - Stacey Carrillo 
