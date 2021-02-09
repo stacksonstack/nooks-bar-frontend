@@ -39,7 +39,7 @@ class BeersContainer extends Component {
                   let foundBeer = this.props.beers.find(
                     (beer) => beer.id === id
                   )
-                  return <FullBeerInfo beer={foundBeer} addLike={this.props.addLike} addDislike={this.props.addDislike}/>;
+                  return <FullBeerInfo beer={foundBeer} addLike={this.props.addLike} addBeer={this.props.addBeer} addDislike={this.props.addDislike}/>;
                 }}
               />
               

@@ -28,7 +28,12 @@ class FullBeerInfo extends Component {
                       <p>ABV: {this.props.beer.abv}</p>
                     </div>
                     <div id="beer-food">
-                      <p>Food Pairings: {this.props.beer.food_pairings.map((pairing) => (<li>{pairing}</li>))}</p>
+                      <p>
+                        Food Pairings:{" "}
+                        {this.props.beer.food_pairings.map((pairing) => (
+                          <li>{pairing}</li>
+                        ))}
+                      </p>
                     </div>
                     <div id="beer-btns">
                       <button
@@ -42,6 +47,12 @@ class FullBeerInfo extends Component {
                         onClick={() => this.props.addLike(this.props.beer)}
                       >
                         Likes: {this.props.beer.likes}
+                      </button>
+                      <button
+                        id="btn"
+                        onClick={() => this.props.addBeer(this.props.beer)}
+                      >
+                        Add To My List
                       </button>
                     </div>
                   </div>
