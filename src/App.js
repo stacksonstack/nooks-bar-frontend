@@ -242,7 +242,7 @@ class App extends Component {
       <div id="background">
         {console.log("User Data", this.state.currentUser)}
         <Header />
-        <NavBar user={this.state.currentUser} />
+        <NavBar user={this.state.currentUser} userId={this.state.currentUserId}/>
         <Switch>
           <Route
             exact
