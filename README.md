@@ -6,7 +6,7 @@ This app enables customers to browse through our large collection of beers, save
 - Javascript
 - React
 - HTML
-- CSS 
+- CSS + Styled Components 
 - Bootstrap *only the modals are styled with bootstrap*
 
 ## Getting Started
