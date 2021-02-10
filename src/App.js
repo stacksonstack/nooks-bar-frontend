@@ -130,7 +130,7 @@ class App extends Component {
         abv,
         food_pairing: food_array,
         likes: 0,
-        dislikes: 0
+        dislikes: 0,
       }),
     })
       .then((resp) => resp.json())
@@ -227,6 +227,8 @@ class App extends Component {
             this.props.history.push(`/savedBeers`);
           }
         });
+        if (this.state.currentUserId === null)
+          alert("The email you entered does not exist, please try again.");
       });
   };
   refreshPage = () => {
@@ -234,13 +236,12 @@ class App extends Component {
   };
 
   createUser = (userObj) => {
-    const {name, email, password, age} = userObj
-
+    const { name, email, password, age } = userObj;
     fetch("http://localhost:3000/api/v1/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Accepts": "application/json",
+        Accepts: "application/json",
       },
       body: JSON.stringify({
         name,
@@ -250,17 +251,18 @@ class App extends Component {
         wins: 0,
         losses: 0,
         user_beers: [],
-        beers: []
+        beers: [],
       }),
     })
       .then((resp) => resp.json())
       .then((data) => {
-        console.log("user data" ,data)
-        this.setState({ currentUser: data, currentUserId: data.id ,userBeers: data.beers }, () =>
-          this.props.history.push("/savedBeers")
+        console.log("user data", data);
+        this.setState(
+          { currentUser: data, currentUserId: data.id, userBeers: data.beers },
+          () => this.props.history.push("/savedBeers")
         );
       });
-  }
+  };
 
   render() {
     return (
@@ -280,7 +282,12 @@ class App extends Component {
           <Route
             exact
             path="/"
-            render={() => <Welcome login={this.loginSubmitHandler} signup={this.createUser} />}
+            render={() => (
+              <Welcome
+                login={this.loginSubmitHandler}
+                signup={this.createUser}
+              />
+            )}
           />
           <Route
             path="/user"
