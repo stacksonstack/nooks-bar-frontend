@@ -233,6 +233,35 @@ class App extends Component {
     window.location.reload(false);
   };
 
+  createUser = (userObj) => {
+    const {name, email, password, age} = userObj
+
+    fetch("http://localhost:3000/api/v1/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accepts": "application/json",
+      },
+      body: JSON.stringify({
+        name,
+        email,
+        password,
+        age,
+        wins: 0,
+        losses: 0,
+        user_beers: [],
+        beers: []
+      }),
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        console.log("user data" ,data)
+        this.setState({ currentUser: data, currentUserId: data.id ,userBeers: data.beers }, () =>
+          this.props.history.push("/savedBeers")
+        );
+      });
+  }
+
   render() {
     return (
       <div id="background">
@@ -251,7 +280,7 @@ class App extends Component {
           <Route
             exact
             path="/"
-            render={() => <Welcome login={this.loginSubmitHandler} />}
+            render={() => <Welcome login={this.loginSubmitHandler} signup={this.createUser} />}
           />
           <Route
             path="/user"

@@ -30,7 +30,7 @@ function Welcome(props) {
               <Login login={props.login}/>
             
           
-              <Signup />
+              <Signup signup={props.signup}/>
               </div>
             </div>
           </div>
