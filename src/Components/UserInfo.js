@@ -10,9 +10,9 @@ class UserInfo extends Component {
         <div class="frame-container">
         <div class="frame">
         <h1>{this.props.user.name}</h1>
-        <p>Email:{this.props.user.email}</p>
-        <p>Age:{this.props.user.age}</p>
-        <p>Password:{this.props.user.password}</p>
+        <p>Email: {this.props.user.email}</p>
+        <p>Age: {this.props.user.age}</p>
+        <p>Password: {this.props.user.password}</p>
         <NavLink to="/user">
           <button id="btn">Update Information</button>
         </NavLink><br/>

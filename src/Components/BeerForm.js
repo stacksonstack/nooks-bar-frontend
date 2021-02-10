@@ -20,9 +20,7 @@ class BeerForm extends Component {
 
   localSubmitHandler = (event) => {
     event.preventDefault();
-    
     this.props.addNewBeer(this.state);
-   
   };
 
  

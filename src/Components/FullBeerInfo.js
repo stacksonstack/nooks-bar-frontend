@@ -30,7 +30,7 @@ class FullBeerInfo extends Component {
                     <div id="beer-food">
                       <p>
                         Food Pairings:{" "}
-                        {this.props.beer.food_pairings.map((pairing) => (
+                        {this.props.beer.food_pairing.map((pairing) => (
                           <li>{pairing}</li>
                         ))}
                       </p>

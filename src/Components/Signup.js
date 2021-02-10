@@ -46,9 +46,9 @@ class Signup extends Component{
                     <label>Email</label><br/>
                     <input type="text" value={null} name="email" onChange={null}/><br/><br/>
                     <label>Choose Password</label><br/>
-                    <input type="text" value={null} name="password" onChange={null}/><br/><br/>
+                    <input type="password" value={null} name="password" onChange={null}/><br/><br/>
                     <label>Re-enter Password</label><br/>
-                    <input type="text" value={null} name="password2" onChange={null}/><br/><br/>
+                    <input type="password" value={null} name="password2" onChange={null}/><br/><br/>
                     <button id="btn">Sign Up!</button>
                 </form></div>
             <div class="modal-footer">
@@ -67,7 +67,6 @@ class Signup extends Component{
           </div>
         </div>
       </div>
-      {/* <!-- SIGNUP MODAL --> */}
             </div>
         )
     }

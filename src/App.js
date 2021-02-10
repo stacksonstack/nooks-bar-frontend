@@ -51,7 +51,6 @@ class App extends Component {
     })
       .then((resp) => resp.json())
       .then((data) => {
-        console.log("beer state:", this.state.beers);
         let beerCopy = this.state.beers;
         let index = beerCopy.findIndex((beer) => beer.id === beerObj.id);
         beerCopy[index] = data;
@@ -111,34 +110,31 @@ class App extends Component {
       tag_line,
       description,
       image_url,
-
+      abv,
       pair1,
       pair2,
       pair3,
-      abv,
     } = beerObj;
-    let sample = {
-      name,
-      tag_line,
-      description,
-      image_url,
-      food_pairing: [pair1, pair2, pair3],
-      abv,
-      likes: 0,
-      dislikes: 0,
-    };
-
+    const food_array = [pair1, pair2, pair3];
     fetch("http://localhost:3000/api/v1/beers", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Accepts: "application/json",
       },
-      body: JSON.stringify(sample),
+      body: JSON.stringify({
+        name,
+        tag_line,
+        description,
+        image_url,
+        abv,
+        food_pairing: food_array,
+        likes: 0,
+        dislikes: 0
+      }),
     })
       .then((resp) => resp.json())
       .then((data) => {
-        console.log("Data:", data);
         this.setState({ beers: [...this.state.beers, data] }, () =>
           this.props.history.push("/beers")
         );
@@ -223,33 +219,40 @@ class App extends Component {
       .then((data) => {
         data.forEach((user) => {
           if (email === user.email) {
-            this.setState({currentUserId: user.id})
+            this.setState({ currentUserId: user.id });
             this.setState({ userBeers: user.beers });
-    this.setState({ currentUser: user });
-    this.setState({ totalWins: user.wins });
-    this.setState({ totalLosses: user.losses });
-            this.props.history.push(`/savedBeers`)
+            this.setState({ currentUser: user });
+            this.setState({ totalWins: user.wins });
+            this.setState({ totalLosses: user.losses });
+            this.props.history.push(`/savedBeers`);
           }
         });
       });
   };
-  refreshPage=() =>{
+  refreshPage = () => {
     window.location.reload(false);
-  }
+  };
 
   render() {
     return (
       <div id="background">
-        {console.log("User Data", this.state.currentUser)}
+        {/* {console.log("User Data", this.state.currentUser)} */}
         <Header />
-        <NavBar user={this.state.currentUser} userId={this.state.currentUserId}/>
+        <NavBar
+          user={this.state.currentUser}
+          userId={this.state.currentUserId}
+        />
         <Switch>
           <Route
             exact
             path="/beers/new"
             render={() => <BeerForm addNewBeer={this.addNewBeer} />}
           />
-          <Route exact path="/" render={() => <Welcome login={this.loginSubmitHandler} />} />
+          <Route
+            exact
+            path="/"
+            render={() => <Welcome login={this.loginSubmitHandler} />}
+          />
           <Route
             path="/user"
             render={() => (

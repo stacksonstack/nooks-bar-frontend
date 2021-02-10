@@ -24,7 +24,7 @@ function NavBar(props) {
             </NavLink>
             <li>Log Out</li>
           </>
-        ) : <li> Hello! We're so excited to have you here! ...have you here! </li>}
+        ) :  <li> Hello! We're so excited to have you here! ...have you here! </li>}
       </ul>
     </div>
   );
