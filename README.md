@@ -5,6 +5,8 @@ This app enables customers to browse through our large collection of beers, save
 ## Built With
 - Javascript
 - React
+- Babel 
+- Webpack
 - HTML
 - CSS + Styled Components 
 - Bootstrap *only the modals are styled with bootstrap*
