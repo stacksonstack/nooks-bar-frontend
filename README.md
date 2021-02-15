@@ -15,7 +15,7 @@ This app enables customers to browse through our large collection of beers, save
 - Fork this repo 
 - If you haven't already go to the backend repository and follow setup instructions before continuing
 - In terminal run `npm i`
-- In terminal run `npm start` and visit to start application
+- In terminal run `npm start` and visit http://localhost:3001/ to start application
 
 ## Backend Repo
 - https://github.com/stacksonstack/nooks-bar-backend
