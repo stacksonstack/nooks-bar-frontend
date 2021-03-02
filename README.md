@@ -8,7 +8,7 @@ This app enables customers to browse through our large collection of beers, save
 - Babel 
 - Webpack
 - HTML
-- CSS + Styled Components 
+- CSS
 - Bootstrap *only the modals are styled with bootstrap*
 
 ## Getting Started
