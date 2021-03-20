@@ -24,10 +24,7 @@ function CardGame(props) {
     preloadImages();
   }, [cards]);
 
- 
-
   let sampleVar;
-  
 
   useEffect(() => {
     if(counter > 0){
@@ -37,13 +34,10 @@ function CardGame(props) {
     
   }, [counter]);
 
-
 const sampleStopFunction=()=>{
   clearTimeout(sampleVar);
   setCheckWin(true) 
   setCounter(0);
-}
-
 
   const resizeBoard = () => {
     setDimension(
@@ -61,6 +55,7 @@ const sampleStopFunction=()=>{
       // The Image() constructor creates a new HTMLImageElement instance. It is functionally equivalent to document.createElement('img')
     });
   };
+
   const shuffle = (array) => {
     const _array = array.slice(0);
     for (let i = 0; i < array.length - 1; i++) {
@@ -71,6 +66,7 @@ const sampleStopFunction=()=>{
     }
     return _array;
   };
+
   const initializeDeck = () => {
     let id = 0;
     const cards = [
@@ -95,6 +91,7 @@ const sampleStopFunction=()=>{
     }, []);
     return shuffle(cards);
   };
+
   const handleClick = (id) => {
     setDisabled(true);
     if (flipped.length === 0) {
@@ -130,25 +127,16 @@ const sampleStopFunction=()=>{
     flipped.includes(id);
   };
 
- 
   const gameOver = () => {
     if(solved.length >= 15) {
       <h1>YOU WON</h1>;
       sampleStopFunction();
       props.setWin();
-      
-      console.log("You won!");
-      
     }if(counter === 0 && solved.length < 15) {
       <h1>Game Over</h1>;
       props.setLoss();
-
-      console.log("GAME OVER");  
-      
     }
   };
-
-  
 
   return (
     <div id="card-game">
