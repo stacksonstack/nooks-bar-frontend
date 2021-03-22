@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Card({ solved, disabled, handleClick, id, flipped, height, width, type }) {
+export default function Card({ solved, disabled, handleClick, id, flipped, height, width, cardName }) {
   return (
     <div
       className={`flip-container ${flipped ? "flipped" : " "}`}
@@ -12,7 +12,7 @@ export default function Card({ solved, disabled, handleClick, id, flipped, heigh
           id=""
           style={{ width, height }}
           className={flipped ? "front" : "back"}
-          src={flipped || solved ? `/img/${type}.png` : `/img/backImg.jpg`}
+          src={flipped || solved ? `/img/${cardName}.png` : `/img/backImg.jpg`}
           alt="card"
         />
       </div>
