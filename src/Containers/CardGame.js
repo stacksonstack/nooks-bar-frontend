@@ -50,7 +50,7 @@ const sampleStopFunction=()=>{
 
   const preloadImages = () => {
     cards.map((card) => {
-      const src = `/img/${card.type}.png`;
+      const src = `/img/${card.cardName}.png`;
       new Image().src = src;
       // The Image() constructor creates a new HTMLImageElement instance. It is functionally equivalent to document.createElement('img')
     });
@@ -78,14 +78,14 @@ const sampleStopFunction=()=>{
       "diana",
       "tiffany",
       "marina",
-    ].reduce((acc, type) => {
+    ].reduce((acc, cardName) => {
       acc.push({
         id: id++,
-        type,
+        cardName,
       });
       acc.push({
         id: id++,
-        type,
+        cardName,
       });
       return acc;
     }, []);
@@ -120,7 +120,7 @@ const sampleStopFunction=()=>{
   const isMatch = (id) => {
     const clickedCard = cards.find((card) => card.id === id);
     const flippedCard = cards.find((card) => flipped[0] === card.id);
-    return flippedCard.type === clickedCard.type;
+    return flippedCard.cardName === clickedCard.cardName;
   };
 
   const sameCardClicked = (id) => {
