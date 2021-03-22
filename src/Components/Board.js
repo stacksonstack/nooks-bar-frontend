@@ -7,7 +7,7 @@ export default function Board({ solved, disabled, dimension, cards, flipped, han
     <>
       {cards.map((card) => (
         <Card
-        type={card.type}
+          cardName={card.cardName}
           id={card.id}
           key={card.id}
           width={dimension / 4}
@@ -22,11 +22,3 @@ export default function Board({ solved, disabled, dimension, cards, flipped, han
   );
 }
 
-// Board.propTypes ={
-//     disabled: PropTypes.bool.isRequired,
-//     dimension: PropTypes.number.isRequired,
-//     cards: PropTypes.arrayOf(PropTypes.shape({}).isRequired),
-//     flipped: PropTypes.arrayOf(PropTypes.number.isRequired),
-//     solved: PropTypes.arrayOf(PropTypes.number.isRequired),
-//     handleClick: PropTypes.func.isRequired
-// }
